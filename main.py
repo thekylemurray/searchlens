@@ -12,49 +12,6 @@ from auditor.reporter import print_result
 APP_NAME = "SEO Auditor"
 VERSION = "0.1.0"
 
-def get_h1_tags(soup):
-    h1_tags = soup.find_all("h1")
-
-    return [h1.get_text(strip=True) for h1 in h1_tags]
-
-
-def get_canonical_url(soup):
-    canonical_tag = soup.find("link", attrs={"rel": "canonical"})
-
-    if canonical_tag:
-        return canonical_tag.get("href", "Canonical tag has no href")
-
-    return "No canonical tag found"
-
-
-def get_robots_directives(soup):
-    robots_tag = soup.find("meta", attrs={"name": "robots"})
-
-    if robots_tag:
-        return robots_tag.get("content", "Robots tag has no content")
-
-    return "No robots meta tag found"
-
-
-def get_image_count(soup):
-    return len(soup.find_all("img"))
-
-
-def get_images_missing_alt(soup):
-    img_tags = soup.find_all("img")
-    missing_alt_images = []
-
-    for img in img_tags:
-        alt_text = img.get("alt")
-
-        if alt_text is None or not alt_text.strip():
-            missing_alt_images.append(
-                img.get("src", "Image has no src attribute")
-            )
-
-    return missing_alt_images
-
-
 print(f"{APP_NAME} {VERSION}")
 print("Select your URL")
 user_url = input(" ").strip()
@@ -74,32 +31,3 @@ print(f"Status Code: {response.status_code}")
 results = run_all_checks(soup)
 
 print_report(results)
-
-canonical_url = get_canonical_url(soup)
-print("Canonical URL:", canonical_url)
-
-h1_tags = get_h1_tags(soup)
-
-if h1_tags:
-    print(f"H1 count: {len(h1_tags)}")
-
-    for h1 in h1_tags:
-        print("-", h1)
-
-    if len(h1_tags) > 1:
-        print("Warning: Multiple H1 tags detected")
-else:
-    print("No H1 tags found")
-
-robots_directives = get_robots_directives(soup)
-print("Robots directives:", robots_directives)
-
-image_count = get_image_count(soup)
-print(f"Image count: {image_count}")
-
-missing_alt_images = get_images_missing_alt(soup)
-if missing_alt_images:
-    print("Images missing alt text:")
-    for img in missing_alt_images:
-        print("-", img)
-    

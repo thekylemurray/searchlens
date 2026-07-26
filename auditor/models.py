@@ -1,20 +1,24 @@
 from dataclasses import asdict, dataclass
 from typing import Any, Literal
 
-
 AuditStatus = Literal["pass", "warning", "fail", "info"]
 
 
-@dataclass
+@dataclass(slots=True)
 class AuditResult:
-    """Represents the result of one SEO audit check."""
-
     name: str
     status: AuditStatus
     message: str
     value: Any = None
 
-    def to_dict(self) -> dict[str, Any]:
-        """Convert the audit result into a dictionary for exporting."""
+    def is_pass(self) -> bool:
+        return self.status == "pass"
 
+    def is_warning(self) -> bool:
+        return self.status == "warning"
+
+    def is_fail(self) -> bool:
+        return self.status == "fail"
+
+    def to_dict(self):
         return asdict(self)
