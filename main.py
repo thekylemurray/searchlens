@@ -1,5 +1,4 @@
-from bs4 import BeautifulSoup
-import requests
+from auditor.fetcher import fetch_page
 
 APP_NAME = "SEO Auditor"
 VERSION = "0.1.0"
@@ -107,19 +106,19 @@ print("You selected:", user_url)
 if not user_url.startswith(("http://", "https://")):
     user_url = "https://" + user_url
 
-# Make the request
-response = requests.get(user_url)
+page = fetch_page(user_url)
 
-# Print the HTTP status code (e.g., 200 means success)
+response = page["response"]
+soup = page["soup"]
+html = page["html"]
+
 print(f"Status Code: {response.status_code}")
 
-soup = BeautifulSoup(response.text, "html.parser")
+from auditor.checks.title import check_title
 
-page_title = get_page_title(soup)
-print("Page title:", page_title)
+title_result = check_title(soup)
 
-title_result = audit_title(page_title)
-print("Title audit:", title_result)
+print(title_result.message)
 
 meta_description = get_meta_description(soup)
 print("Description:", meta_description)
@@ -154,3 +153,4 @@ if missing_alt_images:
     print("Images missing alt text:")
     for img in missing_alt_images:
         print("-", img)
+    
