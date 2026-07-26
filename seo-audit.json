@@ -1,0 +1,67 @@
+{
+  "url": "https://thekey.com",
+  "score": 85,
+  "results": [
+    {
+      "name": "Title Tag",
+      "status": "pass",
+      "message": "...",
+      "value": "Trusted Premium In-Home Care Services for Seniors | TheKey",
+      "weight": 20
+    },
+    {
+      "name": "Meta Description",
+      "status": "pass",
+      "message": "Description length is good (150 characters).",
+      "value": "Professional in-home senior care that supports safety, independence, and peace of mind. Trusted caregivers and personalized home care tailored to you.",
+      "weight": 15
+    },
+    {
+      "name": "Canonical URL",
+      "status": "pass",
+      "message": "Canonical URL found.",
+      "value": "https://thekey.com",
+      "weight": 15
+    },
+    {
+      "name": "H1 Tags",
+      "status": "warning",
+      "message": "2 H1 tags found. Pages should generally have one H1.",
+      "value": [
+        "Trusted Home Care, Built Around Your Life",
+        "Connect With Your Local Care Team"
+      ],
+      "weight": 15
+    },
+    {
+      "name": "Robots Meta Tag",
+      "status": "info",
+      "message": "No robots meta tag found. Search engines will generally use their default indexing behavior.",
+      "value": null,
+      "weight": 10
+    },
+    {
+      "name": "Images",
+      "status": "pass",
+      "message": "All 28 images contain alt text.",
+      "value": null,
+      "weight": 10
+    },
+    {
+      "name": "Open Graph",
+      "status": "warning",
+      "message": "1 required Open Graph tag is missing.",
+      "value": {
+        "found": {
+          "Title": "Trusted Premium In-Home Care Services for Seniors | TheKey",
+          "Description": "Professional in-home senior care that supports safety, independence, and peace of mind. Trusted caregivers and personalized home care tailored to you.",
+          "URL": "https://thekey.com"
+        },
+        "missing": [
+          "og:image"
+        ]
+      },
+      "weight": 10
+    }
+  ]
+}

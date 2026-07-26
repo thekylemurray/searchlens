@@ -1,6 +1,6 @@
 from auditor.models import AuditResult
 from auditor.scoring import calculate_score
-
+from auditor.html_reporter import export_html_report
 
 STATUS_SYMBOLS = {
     "pass": "✓",
@@ -88,3 +88,4 @@ def print_report(results: list[AuditResult]) -> None:
         f"{failures} fail, "
         f"{info_results} info"
     )
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SEO Audit Report</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background: #f3f4f6;
+            color: #111827;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .report-header {
+            padding: 32px;
+            margin-bottom: 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .report-header h1 {
+            margin-top: 0;
+        }
+
+        .score {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .url {
+            overflow-wrap: anywhere;
+            color: #4b5563;
+        }
+
+        .result-card {
+            padding: 24px;
+            margin-bottom: 16px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .result-header h2 {
+            margin: 0;
+        }
+
+        .status {
+            padding: 6px 10px;
+            border-radius: 999px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .result-value {
+            overflow-wrap: anywhere;
+            color: #374151;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <header class="report-header">
+            <h1>SEO Audit Report</h1>
+            <div class="score">85/100</div>
+            <p class="url">https://thekey.com</p>
+        </header>
+
+        
+    <article class="result-card">
+        <div class="result-header">
+            <h2>Title Tag</h2>
+            <span class="status" style="background-color: #166534;">
+                PASS
+            </span>
+        </div>
+
+        <p>...</p>
+
+        <div class="result-value">
+            <p>Trusted Premium In-Home Care Services for Seniors | TheKey</p>
+        </div>
+    </article>
+    
+    <article class="result-card">
+        <div class="result-header">
+            <h2>Meta Description</h2>
+            <span class="status" style="background-color: #166534;">
+                PASS
+            </span>
+        </div>
+
+        <p>Description length is good (150 characters).</p>
+
+        <div class="result-value">
+            <p>Professional in-home senior care that supports safety, independence, and peace of mind. Trusted caregivers and personalized home care tailored to you.</p>
+        </div>
+    </article>
+    
+    <article class="result-card">
+        <div class="result-header">
+            <h2>Canonical URL</h2>
+            <span class="status" style="background-color: #166534;">
+                PASS
+            </span>
+        </div>
+
+        <p>Canonical URL found.</p>
+
+        <div class="result-value">
+            <p>https://thekey.com</p>
+        </div>
+    </article>
+    
+    <article class="result-card">
+        <div class="result-header">
+            <h2>H1 Tags</h2>
+            <span class="status" style="background-color: #92400e;">
+                WARNING
+            </span>
+        </div>
+
+        <p>2 H1 tags found. Pages should generally have one H1.</p>
+
+        <div class="result-value">
+            <ul><li>Trusted Home Care, Built Around Your Life</li><li>Connect With Your Local Care Team</li></ul>
+        </div>
+    </article>
+    
+    <article class="result-card">
+        <div class="result-header">
+            <h2>Robots Meta Tag</h2>
+            <span class="status" style="background-color: #1e3a8a;">
+                INFO
+            </span>
+        </div>
+
+        <p>No robots meta tag found. Search engines will generally use their default indexing behavior.</p>
+
+        <div class="result-value">
+            
+        </div>
+    </article>
+    
+    <article class="result-card">
+        <div class="result-header">
+            <h2>Images</h2>
+            <span class="status" style="background-color: #166534;">
+                PASS
+            </span>
+        </div>
+
+        <p>All 28 images contain alt text.</p>
+
+        <div class="result-value">
+            
+        </div>
+    </article>
+    
+    <article class="result-card">
+        <div class="result-header">
+            <h2>Open Graph</h2>
+            <span class="status" style="background-color: #92400e;">
+                WARNING
+            </span>
+        </div>
+
+        <p>1 required Open Graph tag is missing.</p>
+
+        <div class="result-value">
+            <h4>Found</h4><ul><li><strong>Title:</strong> Trusted Premium In-Home Care Services for Seniors | TheKey</li><li><strong>Description:</strong> Professional in-home senior care that supports safety, independence, and peace of mind. Trusted caregivers and personalized home care tailored to you.</li><li><strong>URL:</strong> https://thekey.com</li></ul><h4>Missing</h4><ul><li>og:image</li></ul>
+        </div>
+    </article>
+    
+    </main>
+</body>
+</html>
