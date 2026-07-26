@@ -37,10 +37,3 @@ def fetch_page(url):
         "soup": soup,
         "html": html,
     }
-
-if __name__ == "__main__":
-
-    page = fetch_page("https://example.com")
-
-    print(page["response"].status_code)
-    print(page["soup"].title.text)

@@ -1,34 +1,12 @@
+from auditor.checks.title import check_title
+from auditor.constants import (
+    MAX_DESCRIPTION_LENGTH,
+    MIN_DESCRIPTION_LENGTH,
+)
 from auditor.fetcher import fetch_page
 
 APP_NAME = "SEO Auditor"
 VERSION = "0.1.0"
-
-MIN_TITLE_LENGTH = 30
-MAX_TITLE_LENGTH = 60
-
-MIN_DESCRIPTION_LENGTH = 70
-MAX_DESCRIPTION_LENGTH = 160
-
-def get_page_title(soup):
-    if soup.title:
-        return soup.title.get_text(strip=True)
-
-    return "No title tag found"
-
-
-def audit_title(title):
-    if title == "No title tag found":
-        return "FAIL: No title tag found"
-
-    title_length = len(title)
-
-    if title_length < MIN_TITLE_LENGTH:
-        return f"WARNING: Title is too short ({title_length} characters)"
-
-    if title_length > MAX_TITLE_LENGTH:
-        return f"WARNING: Title is too long ({title_length} characters)"
-
-    return f"PASS: Title length is good ({title_length} characters)"
 
 
 def get_meta_description(soup):
@@ -114,11 +92,10 @@ html = page["html"]
 
 print(f"Status Code: {response.status_code}")
 
-from auditor.checks.title import check_title
-
 title_result = check_title(soup)
 
-print(title_result.message)
+print("Page title:", title_result.value)
+print("Title audit:", title_result.message)
 
 meta_description = get_meta_description(soup)
 print("Description:", meta_description)
