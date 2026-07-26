@@ -1,37 +1,16 @@
-from auditor.checks.title import check_title
+from auditor.fetcher import fetch_page
+from auditor.reporter import print_report
+from auditor.runner import run_all_checks
 from auditor.constants import (
     MAX_DESCRIPTION_LENGTH,
     MIN_DESCRIPTION_LENGTH,
 )
 from auditor.fetcher import fetch_page
+from auditor.reporter import print_result
+
 
 APP_NAME = "SEO Auditor"
 VERSION = "0.1.0"
-
-
-def get_meta_description(soup):
-    meta_tag = soup.find("meta", attrs={"name": "description"})
-
-    if meta_tag:
-        return meta_tag.get("content", "Description tag has no content")
-
-    return "No description meta tag found"
-
-
-def audit_meta_description(description):
-    if description == "No description meta tag found":
-        return "FAIL: No description meta tag found"
-
-    description_length = len(description)
-
-    if description_length < MIN_DESCRIPTION_LENGTH:
-        return f"WARNING: Description is too short ({description_length} characters)"
-
-    if description_length > MAX_DESCRIPTION_LENGTH:
-        return f"WARNING: Description is too long ({description_length} characters)"
-
-    return f"PASS: Description length is good ({description_length} characters)"
-
 
 def get_h1_tags(soup):
     h1_tags = soup.find_all("h1")
@@ -92,16 +71,9 @@ html = page["html"]
 
 print(f"Status Code: {response.status_code}")
 
-title_result = check_title(soup)
+results = run_all_checks(soup)
 
-print("Page title:", title_result.value)
-print("Title audit:", title_result.message)
-
-meta_description = get_meta_description(soup)
-print("Description:", meta_description)
-
-meta_result = audit_meta_description(meta_description)
-print("Description audit:", meta_result)
+print_report(results)
 
 canonical_url = get_canonical_url(soup)
 print("Canonical URL:", canonical_url)
