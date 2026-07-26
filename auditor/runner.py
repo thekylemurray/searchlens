@@ -7,6 +7,7 @@ from auditor.checks.canonical import check_canonical
 from auditor.checks.h1 import check_h1
 from auditor.checks.robots import check_robots
 from auditor.checks.images import check_images
+from auditor.checks.open_graph import check_open_graph
 
 def run_all_checks(soup: BeautifulSoup) -> list[AuditResult]:
     """Run every registered page-level SEO check."""
@@ -18,6 +19,7 @@ def run_all_checks(soup: BeautifulSoup) -> list[AuditResult]:
         check_h1,
         check_robots,
         check_images,
+        check_open_graph,
     ]
 
     results = []

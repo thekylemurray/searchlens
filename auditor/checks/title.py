@@ -48,8 +48,8 @@ def check_title(soup: BeautifulSoup) -> AuditResult:
         )
 
     return AuditResult(
-        name="Title Tag",
-        status="pass",
-        message=f"Title length is good ({title_length} characters).",
-        value=title,
-    )
+    name="Title Tag",
+    status="pass",
+    message="...",
+    value=title,
+)

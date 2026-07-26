@@ -1,4 +1,5 @@
 from auditor.models import AuditResult
+from auditor.scoring import calculate_score
 
 
 STATUS_SYMBOLS = {
@@ -22,8 +23,29 @@ def print_result(result: AuditResult) -> None:
     if result.value not in (None, ""):
         if isinstance(result.value, list):
             print("  Values:")
+
             for item in result.value:
                 print(f"    • {item}")
+
+        elif isinstance(result.value, dict):
+            print("  Details:")
+
+            for key, value in result.value.items():
+                if isinstance(value, dict):
+                    print(f"    {key.title()}:")
+
+                    for nested_key, nested_value in value.items():
+                        print(f"      • {nested_key}: {nested_value}")
+
+                elif isinstance(value, list):
+                    print(f"    {key.title()}:")
+
+                    for item in value:
+                        print(f"      • {item}")
+
+                else:
+                    print(f"    • {key}: {value}")
+
         else:
             print(f"  Value: {result.value}")
 
@@ -38,9 +60,12 @@ def print_report(results: list[AuditResult]) -> None:
     failures = 0
     info_results = 0
 
+    score = calculate_score(results)
+
     print()
     print("=" * 50)
     print("SEO AUDIT RESULTS")
+    print(f"SEO Score: {score}/100")
     print("=" * 50)
     print()
 
