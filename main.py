@@ -1,4 +1,9 @@
 import argparse
+from concurrent.futures import (
+    Future,
+    ThreadPoolExecutor,
+    as_completed,
+)
 from pathlib import Path
 
 import requests
@@ -19,7 +24,10 @@ from auditor.site_reporter import print_site_report
 
 
 APP_NAME = "SEO Auditor"
-VERSION = "0.7.0"
+VERSION = "0.8.0"
+
+DEFAULT_WORKERS = 5
+MAX_WORKERS = 20
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -48,6 +56,16 @@ def parse_arguments() -> argparse.Namespace:
         type=int,
         default=25,
         help="Maximum number of pages to crawl. Default: 25",
+    )
+
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=DEFAULT_WORKERS,
+        help=(
+            "Number of pages to audit concurrently in crawl mode. "
+            f"Default: {DEFAULT_WORKERS}; maximum: {MAX_WORKERS}"
+        ),
     )
 
     parser.add_argument(
@@ -204,6 +222,99 @@ def audit_crawled_page(
     )
 
 
+def audit_pages_concurrently(
+    page_urls: list[str],
+    workers: int,
+) -> tuple[list[PageAudit], list[FailedPage]]:
+    """Audit crawled pages concurrently using a worker pool."""
+
+    page_audits: list[PageAudit] = []
+    failed_pages: list[FailedPage] = []
+
+    if not page_urls:
+        return page_audits, failed_pages
+
+    future_to_url: dict[Future[PageAudit], str] = {}
+
+    with ThreadPoolExecutor(
+        max_workers=workers,
+        thread_name_prefix="seo-audit",
+    ) as executor:
+        for page_url in page_urls:
+            future = executor.submit(
+                audit_crawled_page,
+                page_url,
+            )
+
+            future_to_url[future] = page_url
+
+        total_pages = len(future_to_url)
+
+        for completed_count, future in enumerate(
+            as_completed(future_to_url),
+            start=1,
+        ):
+            requested_url = future_to_url[future]
+
+            try:
+                page_audit = future.result()
+
+            except requests.RequestException as error:
+                failed_page = FailedPage(
+                    url=requested_url,
+                    error=str(error),
+                )
+
+                failed_pages.append(failed_page)
+
+                print(
+                    f"[{completed_count}/{total_pages}] "
+                    f"Failed {requested_url}"
+                )
+                print(f"  Error: {error}")
+
+            except Exception as error:
+                failed_page = FailedPage(
+                    url=requested_url,
+                    error=(
+                        f"Unexpected audit error: "
+                        f"{type(error).__name__}: {error}"
+                    ),
+                )
+
+                failed_pages.append(failed_page)
+
+                print(
+                    f"[{completed_count}/{total_pages}] "
+                    f"Failed {requested_url}"
+                )
+                print(
+                    f"  Unexpected error: "
+                    f"{type(error).__name__}: {error}"
+                )
+
+            else:
+                page_audits.append(page_audit)
+
+                print(
+                    f"[{completed_count}/{total_pages}] "
+                    f"Completed {page_audit.url}"
+                )
+                print(
+                    f"  Score: {page_audit.score}/100"
+                )
+
+    page_audits.sort(
+        key=lambda page: page.url.lower()
+    )
+
+    failed_pages.sort(
+        key=lambda page: page.url.lower()
+    )
+
+    return page_audits, failed_pages
+
+
 def export_crawl_reports(
     crawl_audit: CrawlAudit,
     args: argparse.Namespace,
@@ -257,9 +368,10 @@ def export_crawl_reports(
 def run_crawl_audit(
     url: str,
     max_pages: int,
+    workers: int,
     args: argparse.Namespace,
 ) -> CrawlAudit:
-    """Crawl and audit multiple pages from one website."""
+    """Crawl a website and audit its discovered pages."""
 
     print(f"Crawling: {url}")
     print(f"Maximum pages: {max_pages}")
@@ -278,37 +390,22 @@ def run_crawl_audit(
     )
     print()
 
-    crawl_audit = CrawlAudit(
-        start_url=url,
-        link_edges=discovery.links,
+    print(
+        f"Auditing with {workers} concurrent worker(s)."
+    )
+    print()
+
+    page_audits, failed_pages = audit_pages_concurrently(
+        page_urls=discovery.pages,
+        workers=workers,
     )
 
-    for index, page_url in enumerate(
-        discovery.pages,
-        start=1,
-    ):
-        print(
-            f"[{index}/{len(discovery.pages)}] "
-            f"Auditing {page_url}"
-        )
-
-        try:
-            page_audit = audit_crawled_page(page_url)
-
-        except requests.RequestException as error:
-            crawl_audit.failed_pages.append(
-                FailedPage(
-                    url=page_url,
-                    error=str(error),
-                )
-            )
-
-            print(f"  Failed: {error}")
-            continue
-
-        crawl_audit.pages.append(page_audit)
-
-        print(f"  Score: {page_audit.score}/100")
+    crawl_audit = CrawlAudit(
+        start_url=url,
+        pages=page_audits,
+        failed_pages=failed_pages,
+        link_edges=discovery.links,
+    )
 
     print_site_report(crawl_audit)
     export_crawl_reports(crawl_audit, args)
@@ -326,6 +423,16 @@ def validate_arguments(
             "--max-pages must be greater than zero."
         )
 
+    if args.workers < 1:
+        raise SystemExit(
+            "--workers must be greater than zero."
+        )
+
+    if args.workers > MAX_WORKERS:
+        raise SystemExit(
+            f"--workers cannot exceed {MAX_WORKERS}."
+        )
+
     if args.export_csv and not args.crawl:
         raise SystemExit(
             "--csv can only be used together with --crawl."
@@ -339,6 +446,14 @@ def validate_arguments(
     if args.export_json and args.crawl:
         raise SystemExit(
             "Crawl-mode JSON export is not supported yet."
+        )
+
+    if (
+        not args.crawl
+        and args.workers != DEFAULT_WORKERS
+    ):
+        raise SystemExit(
+            "--workers can only be customized in crawl mode."
         )
 
 
@@ -358,6 +473,7 @@ def main() -> None:
             run_crawl_audit(
                 url=user_url,
                 max_pages=args.max_pages,
+                workers=args.workers,
                 args=args,
             )
         else:
