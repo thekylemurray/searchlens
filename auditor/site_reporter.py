@@ -1,50 +1,50 @@
 from collections import Counter
-from typing import Any
 
-from auditor.models import AuditResult
+from auditor.models import CrawlAudit, PageAudit
+
+
+IssueKey = tuple[str, str, str]
 
 
 def build_issue_counts(
-    page_audits: list[dict[str, Any]],
-) -> Counter:
+    crawl_audit: CrawlAudit,
+) -> Counter[IssueKey]:
     """Count warnings and failures across all audited pages."""
 
-    issue_counts = Counter()
+    issue_counts: Counter[IssueKey] = Counter()
 
-    for page_audit in page_audits:
-        results: list[AuditResult] = page_audit["results"]
+    for page_audit in crawl_audit.pages:
+        for result in page_audit.results:
+            if result.status not in ("warning", "fail"):
+                continue
 
-        for result in results:
-            if result.status in ("warning", "fail"):
-                issue_key = (
-                    result.name,
-                    result.status,
-                    result.message,
-                )
+            issue_key = (
+                result.name,
+                result.status,
+                result.message,
+            )
 
-                issue_counts[issue_key] += 1
+            issue_counts[issue_key] += 1
 
     return issue_counts
 
 
 def count_statuses(
-    page_audits: list[dict[str, Any]],
-) -> Counter:
+    crawl_audit: CrawlAudit,
+) -> Counter[str]:
     """Count all audit result statuses across the site."""
 
-    status_counts = Counter()
+    status_counts: Counter[str] = Counter()
 
-    for page_audit in page_audits:
-        results: list[AuditResult] = page_audit["results"]
-
-        for result in results:
+    for page_audit in crawl_audit.pages:
+        for result in page_audit.results:
             status_counts[result.status] += 1
 
     return status_counts
 
 
 def print_ranked_pages(
-    page_audits: list[dict[str, Any]],
+    pages: list[PageAudit],
     *,
     reverse: bool,
     limit: int = 5,
@@ -52,21 +52,20 @@ def print_ranked_pages(
     """Print pages ranked by SEO score."""
 
     ranked_pages = sorted(
-        page_audits,
-        key=lambda page: page["score"],
+        pages,
+        key=lambda page: page.score,
         reverse=reverse,
     )
 
     for page_audit in ranked_pages[:limit]:
-        score = page_audit["score"]
-        url = page_audit["url"]
-
-        print(f"  {score:>3}/100  {url}")
+        print(
+            f"  {page_audit.score:>3}/100  "
+            f"{page_audit.url}"
+        )
 
 
 def print_site_report(
-    page_audits: list[dict[str, Any]],
-    failed_pages: list[dict[str, str]],
+    crawl_audit: CrawlAudit,
 ) -> None:
     """Print a site-wide crawl and SEO audit summary."""
 
@@ -75,32 +74,29 @@ def print_site_report(
     print("SITE AUDIT SUMMARY")
     print("=" * 70)
 
-    if not page_audits:
+    if not crawl_audit.pages:
         print("No pages were successfully audited.")
 
-        if failed_pages:
+        if crawl_audit.failed_pages:
             print()
             print("Failed Pages")
+            print("-" * 70)
 
-            for failed_page in failed_pages:
+            for failed_page in crawl_audit.failed_pages:
                 print(
-                    f"  • {failed_page['url']}: "
-                    f"{failed_page['error']}"
+                    f"  • {failed_page.url}: "
+                    f"{failed_page.error}"
                 )
 
         return
 
-    average_score = round(
-        sum(page["score"] for page in page_audits)
-        / len(page_audits)
-    )
+    status_counts = count_statuses(crawl_audit)
+    issue_counts = build_issue_counts(crawl_audit)
 
-    status_counts = count_statuses(page_audits)
-    issue_counts = build_issue_counts(page_audits)
-
-    print(f"Pages Audited: {len(page_audits)}")
-    print(f"Pages Failed:  {len(failed_pages)}")
-    print(f"Average Score: {average_score}/100")
+    print(f"Website:       {crawl_audit.start_url}")
+    print(f"Pages Audited: {crawl_audit.pages_audited}")
+    print(f"Pages Failed:  {crawl_audit.pages_failed}")
+    print(f"Average Score: {crawl_audit.average_score}/100")
 
     print()
     print("Audit Results")
@@ -117,16 +113,12 @@ def print_site_report(
     if not issue_counts:
         print("  No warnings or failures were detected.")
     else:
-        for (
-            check_name,
-            status,
-            message,
-        ), count in issue_counts.most_common(10):
-            status_label = status.upper()
+        for issue, count in issue_counts.most_common(10):
+            check_name, status, message = issue
 
             print(
                 f"  • {count} page(s) — "
-                f"{check_name} [{status_label}]"
+                f"{check_name} [{status.upper()}]"
             )
             print(f"    {message}")
 
@@ -135,7 +127,7 @@ def print_site_report(
     print("-" * 70)
 
     print_ranked_pages(
-        page_audits,
+        crawl_audit.pages,
         reverse=False,
     )
 
@@ -144,17 +136,17 @@ def print_site_report(
     print("-" * 70)
 
     print_ranked_pages(
-        page_audits,
+        crawl_audit.pages,
         reverse=True,
     )
 
-    if failed_pages:
+    if crawl_audit.failed_pages:
         print()
         print("Pages That Could Not Be Audited")
         print("-" * 70)
 
-        for failed_page in failed_pages:
-            print(f"  • {failed_page['url']}")
-            print(f"    {failed_page['error']}")
+        for failed_page in crawl_audit.failed_pages:
+            print(f"  • {failed_page.url}")
+            print(f"    {failed_page.error}")
 
     print("=" * 70)

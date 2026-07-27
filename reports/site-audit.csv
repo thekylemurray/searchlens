@@ -1,0 +1,47 @@
+﻿URL,Status Code,Score,Check,Result Status,Message
+https://thekey.com/,200,81,H1 Tags,warning,2 H1 tags found. Pages should generally have one H1.
+https://thekey.com/,200,81,Heading Structure,warning,1 heading level jump(s) were detected.
+https://thekey.com/,200,81,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/,200,81,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/,200,81,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/,200,81,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/careers,200,89,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/careers,200,89,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/careers,200,89,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/careers,200,89,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/locations,200,85,Heading Structure,warning,1 heading level jump(s) were detected.
+https://thekey.com/locations,200,85,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/locations,200,85,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/locations,200,85,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/locations,200,85,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/services,200,89,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/services,200,89,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/services,200,89,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/services,200,89,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/services/alzheimers-dementia-care,200,83,Title Tag,warning,Title is too long (63 characters; maximum is 60).
+https://thekey.com/services/alzheimers-dementia-care,200,83,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/services/alzheimers-dementia-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/services/alzheimers-dementia-care,200,83,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/services/alzheimers-dementia-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/services/in-home-care,200,89,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/services/in-home-care,200,89,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/services/in-home-care,200,89,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/services/in-home-care,200,89,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/services/in-home-care/24-7-care,200,89,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/services/in-home-care/24-7-care,200,89,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/services/in-home-care/24-7-care,200,89,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/services/in-home-care/24-7-care,200,89,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/services/in-home-care/hourly-care-adl-support,200,89,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/services/in-home-care/hourly-care-adl-support,200,89,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/services/in-home-care/hourly-care-adl-support,200,89,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/services/in-home-care/hourly-care-adl-support,200,89,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/services/in-home-care/live-in-care,200,83,Title Tag,warning,Title is too long (61 characters; maximum is 60).
+https://thekey.com/services/in-home-care/live-in-care,200,83,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/services/in-home-care/live-in-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/services/in-home-care/live-in-care,200,83,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/services/in-home-care/live-in-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://thekey.com/services/respite-care,200,83,Title Tag,warning,Title is too long (66 characters; maximum is 60).
+https://thekey.com/services/respite-care,200,83,Open Graph,warning,1 required Open Graph tag is missing.
+https://thekey.com/services/respite-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
+https://thekey.com/services/respite-care,200,83,Links,warning,11 link(s) have empty anchor text.
+https://thekey.com/services/respite-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.

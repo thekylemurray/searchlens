@@ -4,10 +4,12 @@ from pathlib import Path
 import requests
 
 from auditor.context import PageContext
+from auditor.crawl_csv_exporter import export_crawl_csv
 from auditor.crawler import crawl_site
 from auditor.exporter import export_results
 from auditor.fetcher import fetch_page
 from auditor.html_reporter import export_html_report
+from auditor.models import CrawlAudit, FailedPage, PageAudit
 from auditor.reporter import print_report
 from auditor.runner import run_all_checks
 from auditor.scoring import calculate_score
@@ -15,7 +17,7 @@ from auditor.site_reporter import print_site_report
 
 
 APP_NAME = "SEO Auditor"
-VERSION = "0.3.0"
+VERSION = "0.5.0"
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -58,6 +60,13 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         dest="export_html",
         help="Export a single-page HTML audit report.",
+    )
+
+    parser.add_argument(
+        "--csv",
+        action="store_true",
+        dest="export_csv",
+        help="Export crawl issues as CSV.",
     )
 
     parser.add_argument(
@@ -123,6 +132,7 @@ def run_single_page_audit(
         return
 
     output_directory = Path(args.output_dir)
+
     output_directory.mkdir(
         parents=True,
         exist_ok=True,
@@ -153,10 +163,28 @@ def run_single_page_audit(
         print(f"HTML report saved to: {html_path}")
 
 
+def audit_crawled_page(
+    page_url: str,
+) -> PageAudit:
+    """Fetch and audit one page discovered during a crawl."""
+
+    context = create_context(page_url)
+    results = run_all_checks(context)
+    score = calculate_score(results)
+
+    return PageAudit(
+        url=context.url,
+        status_code=context.response.status_code,
+        score=score,
+        results=results,
+    )
+
+
 def run_crawl_audit(
     url: str,
     max_pages: int,
-) -> None:
+    args: argparse.Namespace,
+) -> CrawlAudit:
     """Crawl and audit multiple pages from one website."""
 
     print(f"Crawling: {url}")
@@ -173,8 +201,9 @@ def run_crawl_audit(
     )
     print()
 
-    page_audits = []
-    failed_pages = []
+    crawl_audit = CrawlAudit(
+        start_url=url,
+    )
 
     for index, page_url in enumerate(
         discovered_pages,
@@ -186,48 +215,68 @@ def run_crawl_audit(
         )
 
         try:
-            context = create_context(page_url)
-            results = run_all_checks(context)
-            score = calculate_score(results)
+            page_audit = audit_crawled_page(page_url)
 
         except requests.RequestException as error:
-            failed_pages.append(
-                {
-                    "url": page_url,
-                    "error": str(error),
-                }
+            crawl_audit.failed_pages.append(
+                FailedPage(
+                    url=page_url,
+                    error=str(error),
+                )
             )
 
             print(f"  Failed: {error}")
             continue
 
-        page_audits.append(
-            {
-                "url": context.url,
-                "status_code": context.response.status_code,
-                "score": score,
-                "results": results,
-            }
+        crawl_audit.pages.append(page_audit)
+
+        print(f"  Score: {page_audit.score}/100")
+
+    print_site_report(crawl_audit)
+
+    if args.export_csv:
+        output_directory = Path(args.output_dir)
+
+        output_directory.mkdir(
+            parents=True,
+            exist_ok=True,
         )
 
-        print(f"  Score: {score}/100")
+        csv_path = export_crawl_csv(
+            crawl_audit=crawl_audit,
+            output_file=str(
+                output_directory / "site-audit.csv"
+            ),
+        )
 
-    print_site_report(
-        page_audits=page_audits,
-        failed_pages=failed_pages,
-    )
+        print(f"CSV report saved to: {csv_path}")
+
+    return crawl_audit
+
+
+def validate_arguments(
+    args: argparse.Namespace,
+) -> None:
+    """Validate combinations of command-line arguments."""
+
+    if args.max_pages < 1:
+        raise SystemExit(
+            "--max-pages must be greater than zero."
+        )
+
+    if args.export_csv and not args.crawl:
+        raise SystemExit(
+            "--csv can only be used together with --crawl."
+        )
 
 
 def main() -> None:
     """Run the SEO auditor."""
 
     args = parse_arguments()
-    user_url = normalize_url(args.url)
+    validate_arguments(args)
 
-    if args.max_pages < 1:
-        raise SystemExit(
-            "--max-pages must be greater than zero."
-        )
+    user_url = normalize_url(args.url)
 
     print(f"{APP_NAME} {VERSION}")
     print()
@@ -237,6 +286,7 @@ def main() -> None:
             run_crawl_audit(
                 url=user_url,
                 max_pages=args.max_pages,
+                args=args,
             )
         else:
             run_single_page_audit(
