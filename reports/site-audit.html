@@ -8,15 +8,18 @@
         content="width=device-width, initial-scale=1"
     >
 
-    <title>SEO Site Audit — https://thekey.com</title>
+    <title>
+        SEO Site Audit — https://thekey.com
+    </title>
 
     <style>
         :root {
             color-scheme: light;
 
-            --background: #f4f6f8;
+            --background: #f3f5f8;
             --surface: #ffffff;
             --surface-muted: #f8fafc;
+            --surface-hover: #f4f7fb;
 
             --text-primary: #172033;
             --text-secondary: #5f6b7a;
@@ -24,15 +27,22 @@
 
             --brand: #3454d1;
             --brand-dark: #263ea3;
+            --brand-soft: #edf1ff;
 
             --good: #18794e;
             --good-background: #e9f8f0;
 
-            --warning: #9a6700;
-            --warning-background: #fff6d8;
+            --warning: #946200;
+            --warning-background: #fff4ce;
 
-            --poor: #c62828;
-            --poor-background: #fdecec;
+            --poor: #b42318;
+            --poor-background: #feeceb;
+
+            --info: #3168a8;
+            --info-background: #eaf3ff;
+
+            --muted: #667085;
+            --muted-background: #eef1f4;
 
             --shadow:
                 0 18px 45px rgba(23, 32, 51, 0.08);
@@ -42,6 +52,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             min-width: 320px;
@@ -49,7 +63,7 @@
             background:
                 radial-gradient(
                     circle at top right,
-                    rgba(52, 84, 209, 0.12),
+                    rgba(52, 84, 209, 0.13),
                     transparent 34rem
                 ),
                 var(--background);
@@ -70,6 +84,17 @@
 
         a {
             color: var(--brand);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.2em;
+        }
+
+        a:hover {
+            color: var(--brand-dark);
+        }
+
+        button,
+        input {
+            font: inherit;
         }
 
         .page-shell {
@@ -94,16 +119,20 @@
             box-shadow: var(--shadow);
         }
 
-        .eyebrow {
+        .eyebrow,
+        .section-eyebrow {
             display: inline-block;
-            margin-bottom: 0.55rem;
 
             color: var(--brand);
 
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 800;
             letter-spacing: 0.12em;
             text-transform: uppercase;
+        }
+
+        .eyebrow {
+            margin-bottom: 0.55rem;
         }
 
         h1 {
@@ -114,11 +143,15 @@
             letter-spacing: -0.04em;
         }
 
+        h2,
+        h3 {
+            letter-spacing: -0.025em;
+        }
+
         .site-url {
             margin: 1rem 0 0;
 
             color: var(--text-secondary);
-            font-size: 1rem;
             overflow-wrap: anywhere;
         }
 
@@ -160,7 +193,7 @@
         .score-label {
             margin-top: 0.55rem;
 
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 800;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -185,11 +218,35 @@
             margin-top: 2rem;
         }
 
-        .section-heading {
-            margin: 0 0 1rem;
+        .section-header {
+            display: flex;
+            gap: 1rem;
+            align-items: end;
+            justify-content: space-between;
 
-            font-size: 1.35rem;
-            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+        }
+
+        .section-heading {
+            margin: 0.25rem 0 0;
+
+            font-size: 1.45rem;
+        }
+
+        .section-count {
+            display: inline-flex;
+            min-width: 2.25rem;
+            min-height: 2.25rem;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0.35rem 0.7rem;
+
+            border-radius: 999px;
+
+            background: var(--brand-soft);
+            color: var(--brand);
+            font-weight: 800;
         }
 
         .summary-grid {
@@ -257,6 +314,294 @@
             background: var(--poor);
         }
 
+        .panel {
+            padding: 1.5rem;
+
+            border: 1px solid var(--border);
+            border-radius: 16px;
+
+            background: var(--surface);
+            box-shadow:
+                0 8px 22px rgba(23, 32, 51, 0.05);
+        }
+
+        .panel h3 {
+            margin: 0 0 1rem;
+        }
+
+        .ranking-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .issues-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .issue-group {
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background: var(--surface);
+        }
+
+        .issue-group summary {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 1.1rem 1.25rem;
+
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .issue-group summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .issue-group summary:hover {
+            background: var(--surface-hover);
+        }
+
+        .issue-group summary::after {
+            margin-left: auto;
+
+            color: var(--text-secondary);
+            content: "+";
+            font-size: 1.35rem;
+            font-weight: 500;
+        }
+
+        .issue-group[open] summary::after {
+            content: "−";
+        }
+
+        .issue-summary-main {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .issue-count {
+            margin-left: auto;
+
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .issue-body {
+            padding: 0 1.25rem 1.25rem;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .issue-message {
+            margin: 1rem 0;
+
+            color: var(--text-secondary);
+        }
+
+        .issue-url-list {
+            max-height: 18rem;
+            margin: 0;
+            padding-left: 1.25rem;
+            overflow-y: auto;
+        }
+
+        .issue-url-list li + li {
+            margin-top: 0.45rem;
+        }
+
+        .status-badge,
+        .score-pill,
+        .count-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 999px;
+
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.55rem;
+
+            font-size: 0.68rem;
+            letter-spacing: 0.06em;
+        }
+
+        .score-pill {
+            min-width: 3rem;
+            padding: 0.35rem 0.65rem;
+        }
+
+        .count-pill {
+            min-width: 2.1rem;
+            padding: 0.25rem 0.55rem;
+        }
+
+        .status-pass {
+            color: var(--good);
+            background: var(--good-background);
+        }
+
+        .status-warning {
+            color: var(--warning);
+            background: var(--warning-background);
+        }
+
+        .status-fail {
+            color: var(--poor);
+            background: var(--poor-background);
+        }
+
+        .status-info {
+            color: var(--info);
+            background: var(--info-background);
+        }
+
+        .status-muted {
+            color: var(--muted);
+            background: var(--muted-background);
+        }
+
+        .table-toolbar {
+            display: flex;
+            gap: 1rem;
+            align-items: end;
+            justify-content: space-between;
+
+            margin-bottom: 1rem;
+        }
+
+        .search-control {
+            display: grid;
+            gap: 0.4rem;
+
+            width: min(100%, 28rem);
+
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .search-control input {
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            background: var(--surface);
+            color: var(--text-primary);
+        }
+
+        .search-control input:focus {
+            border-color: var(--brand);
+            outline: 3px solid rgba(52, 84, 209, 0.15);
+        }
+
+        .result-count {
+            margin: 0;
+
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background: var(--surface);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 0.9rem 1rem;
+
+            border-bottom: 1px solid var(--border);
+
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        th {
+            background: var(--surface-muted);
+            color: var(--text-secondary);
+
+            font-size: 0.74rem;
+            letter-spacing: 0.055em;
+            text-transform: uppercase;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        tbody tr:hover {
+            background: var(--surface-hover);
+        }
+
+        .url-cell {
+            max-width: 38rem;
+            overflow-wrap: anywhere;
+        }
+
+        .sort-button {
+            display: inline-flex;
+            gap: 0.4rem;
+            align-items: center;
+
+            padding: 0;
+
+            border: 0;
+
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+
+            font-size: inherit;
+            font-weight: 800;
+            letter-spacing: inherit;
+            text-transform: inherit;
+        }
+
+        .sort-button:hover {
+            color: var(--brand);
+        }
+
+        .sort-button:focus-visible {
+            border-radius: 4px;
+            outline: 3px solid rgba(52, 84, 209, 0.2);
+        }
+
+        .sort-indicator {
+            min-width: 0.8rem;
+        }
+
+        .compact-table th,
+        .compact-table td {
+            padding: 0.75rem 0.85rem;
+        }
+
         .empty-state {
             padding: 2rem;
 
@@ -294,9 +639,13 @@
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
             }
+
+            .ranking-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        @media (max-width: 520px) {
+        @media (max-width: 600px) {
             .page-shell {
                 width: min(100% - 1rem, 1180px);
                 padding-top: 0.5rem;
@@ -313,6 +662,21 @@
 
             .summary-card {
                 min-height: 120px;
+            }
+
+            .section-header,
+            .table-toolbar {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .issue-group summary {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            .issue-count {
+                margin-left: 0;
             }
         }
     </style>
@@ -333,13 +697,14 @@
                 </p>
 
                 <p class="generated-time">
-                    Generated July 27, 2026 at 06:59 PM Eastern Daylight Time
+                    Generated July 27, 2026 at 07:11 PM Eastern Daylight Time
                 </p>
             </div>
 
             <div
                 class="score-panel score-warning"
-                aria-label="Average SEO score: 85 out of 100"
+                aria-label="Average SEO score:
+                    85 out of 100"
             >
                 <span class="score-number">
                     85
@@ -359,12 +724,20 @@
             class="section"
             aria-labelledby="summary-heading"
         >
-            <h2
-                class="section-heading"
-                id="summary-heading"
-            >
-                Crawl summary
-            </h2>
+            <div class="section-header">
+                <div>
+                    <span class="section-eyebrow">
+                        Overview
+                    </span>
+
+                    <h2
+                        class="section-heading"
+                        id="summary-heading"
+                    >
+                        Crawl summary
+                    </h2>
+                </div>
+            </div>
 
             <div class="summary-grid">
                 
@@ -431,18 +804,1688 @@
             </div>
         </section>
 
+        <section
+            class="section"
+            aria-labelledby="issues-heading"
+        >
+            <div class="section-header">
+                <div>
+                    <span class="section-eyebrow">
+                        Actionable findings
+                    </span>
+
+                    <h2
+                        class="section-heading"
+                        id="issues-heading"
+                    >
+                        Issues by affected page
+                    </h2>
+                </div>
+
+                <span class="section-count">
+                    46
+                </span>
+            </div>
+
+            <div class="issues-list">
+                
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                HTTP Headers
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            10 pages
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            2 recommended HTTP security header(s) are missing.
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/careers"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/careers
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/locations"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/locations
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/alzheimers-dementia-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/alzheimers-dementia-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/24-7-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/24-7-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/hourly-care-adl-support"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/hourly-care-adl-support
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/live-in-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/live-in-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/respite-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/respite-care
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                Links
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            10 pages
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            11 link(s) have empty anchor text.
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/careers"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/careers
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/locations"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/locations
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/alzheimers-dementia-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/alzheimers-dementia-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/24-7-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/24-7-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/hourly-care-adl-support"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/hourly-care-adl-support
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/live-in-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/live-in-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/respite-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/respite-care
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                Open Graph
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            10 pages
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            1 required Open Graph tag is missing.
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/careers"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/careers
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/locations"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/locations
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/alzheimers-dementia-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/alzheimers-dementia-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/24-7-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/24-7-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/hourly-care-adl-support"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/hourly-care-adl-support
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/live-in-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/live-in-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/respite-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/respite-care
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                Twitter Cards
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            10 pages
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            1 recommended Twitter Card tag is missing.
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/careers"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/careers
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/locations"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/locations
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/alzheimers-dementia-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/alzheimers-dementia-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/24-7-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/24-7-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/hourly-care-adl-support"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/hourly-care-adl-support
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/live-in-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/live-in-care
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/services/respite-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/respite-care
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                Heading Structure
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            2 pages
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            1 heading level jump(s) were detected.
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/
+                    </a>
+                </li>
+            
+                <li>
+                    <a
+                        href="https://thekey.com/locations"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/locations
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                H1 Tags
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            1 page
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            2 H1 tags found. Pages should generally have one H1.
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                Title Tag
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            1 page
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            Title is too long (63 characters; maximum is 60).
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/services/alzheimers-dementia-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/alzheimers-dementia-care
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                Title Tag
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            1 page
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            Title is too long (61 characters; maximum is 60).
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/services/in-home-care/live-in-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/in-home-care/live-in-care
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+                <details class="issue-group">
+                    <summary>
+                        <span class="issue-summary-main">
+                            <span class="status-badge status-warning">
+                                WARNING
+                            </span>
+
+                            <strong>
+                                Title Tag
+                            </strong>
+                        </span>
+
+                        <span class="issue-count">
+                            1 page
+                        </span>
+                    </summary>
+
+                    <div class="issue-body">
+                        <p class="issue-message">
+                            Title is too long (66 characters; maximum is 60).
+                        </p>
+
+                        <ul class="issue-url-list">
+                            
+                <li>
+                    <a
+                        href="https://thekey.com/services/respite-care"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://thekey.com/services/respite-care
+                    </a>
+                </li>
+            
+                        </ul>
+                    </div>
+                </details>
+            
+            </div>
+        </section>
+
         
-            <section class="section">
-                <div class="empty-state">
-                    Detailed page results will appear here in
-                    the next dashboard update.
+            <section
+                class="section"
+                aria-labelledby="rankings-heading"
+            >
+                <div class="section-header">
+                    <div>
+                        <span class="section-eyebrow">
+                            Score comparison
+                        </span>
+
+                        <h2
+                            class="section-heading"
+                            id="rankings-heading"
+                        >
+                            Page rankings
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="ranking-grid">
+                    <article class="panel">
+                        <h3>Lowest-scoring pages</h3>
+
+                        <div class="table-container compact-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Score</th>
+                                        <th>URL</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    
+                <tr>
+                    <td>
+                        <span class="score-pill score-poor">
+                            78
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/
+                        </a>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            82
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/locations"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/locations
+                        </a>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            83
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/alzheimers-dementia-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/alzheimers-dementia-care
+                        </a>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            83
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/in-home-care/live-in-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/in-home-care/live-in-care
+                        </a>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            83
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/respite-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/respite-care
+                        </a>
+                    </td>
+                </tr>
+            
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <article class="panel">
+                        <h3>Highest-scoring pages</h3>
+
+                        <div class="table-container compact-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Score</th>
+                                        <th>URL</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/in-home-care/hourly-care-adl-support"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/in-home-care/hourly-care-adl-support
+                        </a>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/in-home-care/24-7-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/in-home-care/24-7-care
+                        </a>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/in-home-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/in-home-care
+                        </a>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services
+                        </a>
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/careers"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/careers
+                        </a>
+                    </td>
+                </tr>
+            
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
                 </div>
             </section>
+        
+
+        
+            <section
+                class="section"
+                aria-labelledby="page-results-heading"
+            >
+                <div class="section-header">
+                    <div>
+                        <span class="section-eyebrow">
+                            Page inventory
+                        </span>
+
+                        <h2
+                            class="section-heading"
+                            id="page-results-heading"
+                        >
+                            All audited pages
+                        </h2>
+                    </div>
+
+                    <span class="section-count">
+                        10
+                    </span>
+                </div>
+
+                <div class="table-toolbar">
+                    <label class="search-control">
+                        <span>Filter pages</span>
+
+                        <input
+                            id="page-search"
+                            type="search"
+                            placeholder="Search by URL"
+                            autocomplete="off"
+                        >
+                    </label>
+
+                    <p
+                        class="result-count"
+                        id="result-count"
+                        aria-live="polite"
+                    >
+                        Showing 10 pages
+                    </p>
+                </div>
+
+                <div class="table-container">
+                    <table id="page-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <button
+                                        class="sort-button"
+                                        data-column="0"
+                                        data-type="text"
+                                    >
+                                        URL
+                                        <span class="sort-indicator"></span>
+                                    </button>
+                                </th>
+
+                                <th>
+                                    <button
+                                        class="sort-button"
+                                        data-column="1"
+                                        data-type="number"
+                                    >
+                                        Score
+                                        <span class="sort-indicator"></span>
+                                    </button>
+                                </th>
+
+                                <th>
+                                    <button
+                                        class="sort-button"
+                                        data-column="2"
+                                        data-type="number"
+                                    >
+                                        HTTP status
+                                        <span class="sort-indicator"></span>
+                                    </button>
+                                </th>
+
+                                <th>
+                                    <button
+                                        class="sort-button"
+                                        data-column="3"
+                                        data-type="number"
+                                    >
+                                        Warnings
+                                        <span class="sort-indicator"></span>
+                                    </button>
+                                </th>
+
+                                <th>
+                                    <button
+                                        class="sort-button"
+                                        data-column="4"
+                                        data-type="number"
+                                    >
+                                        Failures
+                                        <span class="sort-indicator"></span>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            
+                <tr
+                    data-url="https://thekey.com/"
+                    data-score="78"
+                    data-status-code="200"
+                    data-warnings="6"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/
+                        </a>
+                    </td>
+
+                    <td data-sort-value="78">
+                        <span class="score-pill score-poor">
+                            78
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="6">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            6
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
             
+                <tr
+                    data-url="https://thekey.com/careers"
+                    data-score="88"
+                    data-status-code="200"
+                    data-warnings="4"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/careers"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/careers
+                        </a>
+                    </td>
+
+                    <td data-sort-value="88">
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="4">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            4
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                <tr
+                    data-url="https://thekey.com/locations"
+                    data-score="82"
+                    data-status-code="200"
+                    data-warnings="5"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/locations"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/locations
+                        </a>
+                    </td>
+
+                    <td data-sort-value="82">
+                        <span class="score-pill score-warning">
+                            82
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="5">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            5
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                <tr
+                    data-url="https://thekey.com/services"
+                    data-score="88"
+                    data-status-code="200"
+                    data-warnings="4"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services
+                        </a>
+                    </td>
+
+                    <td data-sort-value="88">
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="4">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            4
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                <tr
+                    data-url="https://thekey.com/services/alzheimers-dementia-care"
+                    data-score="83"
+                    data-status-code="200"
+                    data-warnings="5"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/alzheimers-dementia-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/alzheimers-dementia-care
+                        </a>
+                    </td>
+
+                    <td data-sort-value="83">
+                        <span class="score-pill score-warning">
+                            83
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="5">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            5
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                <tr
+                    data-url="https://thekey.com/services/in-home-care"
+                    data-score="88"
+                    data-status-code="200"
+                    data-warnings="4"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/in-home-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/in-home-care
+                        </a>
+                    </td>
+
+                    <td data-sort-value="88">
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="4">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            4
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                <tr
+                    data-url="https://thekey.com/services/in-home-care/24-7-care"
+                    data-score="88"
+                    data-status-code="200"
+                    data-warnings="4"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/in-home-care/24-7-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/in-home-care/24-7-care
+                        </a>
+                    </td>
+
+                    <td data-sort-value="88">
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="4">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            4
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                <tr
+                    data-url="https://thekey.com/services/in-home-care/hourly-care-adl-support"
+                    data-score="88"
+                    data-status-code="200"
+                    data-warnings="4"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/in-home-care/hourly-care-adl-support"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/in-home-care/hourly-care-adl-support
+                        </a>
+                    </td>
+
+                    <td data-sort-value="88">
+                        <span class="score-pill score-warning">
+                            88
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="4">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            4
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                <tr
+                    data-url="https://thekey.com/services/in-home-care/live-in-care"
+                    data-score="83"
+                    data-status-code="200"
+                    data-warnings="5"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/in-home-care/live-in-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/in-home-care/live-in-care
+                        </a>
+                    </td>
+
+                    <td data-sort-value="83">
+                        <span class="score-pill score-warning">
+                            83
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="5">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            5
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                <tr
+                    data-url="https://thekey.com/services/respite-care"
+                    data-score="83"
+                    data-status-code="200"
+                    data-warnings="5"
+                    data-failures="0"
+                >
+                    <td class="url-cell">
+                        <a
+                            href="https://thekey.com/services/respite-care"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            https://thekey.com/services/respite-care
+                        </a>
+                    </td>
+
+                    <td data-sort-value="83">
+                        <span class="score-pill score-warning">
+                            83
+                        </span>
+                    </td>
+
+                    <td data-sort-value="200">
+                        200
+                    </td>
+
+                    <td data-sort-value="5">
+                        <span
+                            class="count-pill status-warning"
+                        >
+                            5
+                        </span>
+                    </td>
+
+                    <td data-sort-value="0">
+                        <span
+                            class="count-pill status-muted"
+                        >
+                            0
+                        </span>
+                    </td>
+                </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        
+
+        
 
         <footer class="dashboard-footer">
             Generated by SEO Auditor
         </footer>
     </main>
+
+    <script>
+        (() => {
+            const table = document.getElementById("page-table");
+            const searchInput = document.getElementById("page-search");
+            const resultCount = document.getElementById("result-count");
+
+            if (!table) {
+                return;
+            }
+
+            const tableBody = table.querySelector("tbody");
+            const sortButtons = table.querySelectorAll(".sort-button");
+
+            let currentColumn = null;
+            let currentDirection = "ascending";
+
+            function getCellValue(row, columnIndex, type) {
+                const cell = row.children[columnIndex];
+
+                if (type === "number") {
+                    const rawValue =
+                        cell.dataset.sortValue
+                        ?? cell.textContent;
+
+                    return Number(rawValue.trim()) || 0;
+                }
+
+                return cell.textContent.trim().toLowerCase();
+            }
+
+            function updateSortIndicators(activeButton) {
+                sortButtons.forEach((button) => {
+                    const indicator =
+                        button.querySelector(".sort-indicator");
+
+                    button.removeAttribute("aria-sort");
+
+                    if (button === activeButton) {
+                        const symbol =
+                            currentDirection === "ascending"
+                            ? "▲"
+                            : "▼";
+
+                        indicator.textContent = symbol;
+                        button.setAttribute(
+                            "aria-sort",
+                            currentDirection
+                        );
+                    } else {
+                        indicator.textContent = "";
+                    }
+                });
+            }
+
+            function sortTable(button) {
+                const columnIndex = Number(button.dataset.column);
+                const type = button.dataset.type;
+
+                if (currentColumn === columnIndex) {
+                    currentDirection =
+                        currentDirection === "ascending"
+                        ? "descending"
+                        : "ascending";
+                } else {
+                    currentColumn = columnIndex;
+                    currentDirection = "ascending";
+                }
+
+                const rows = Array.from(
+                    tableBody.querySelectorAll("tr")
+                );
+
+                rows.sort((firstRow, secondRow) => {
+                    const firstValue = getCellValue(
+                        firstRow,
+                        columnIndex,
+                        type
+                    );
+
+                    const secondValue = getCellValue(
+                        secondRow,
+                        columnIndex,
+                        type
+                    );
+
+                    let comparison = 0;
+
+                    if (firstValue < secondValue) {
+                        comparison = -1;
+                    } else if (firstValue > secondValue) {
+                        comparison = 1;
+                    }
+
+                    return currentDirection === "ascending"
+                        ? comparison
+                        : -comparison;
+                });
+
+                rows.forEach((row) => {
+                    tableBody.appendChild(row);
+                });
+
+                updateSortIndicators(button);
+            }
+
+            function filterRows() {
+                const searchTerm =
+                    searchInput.value.trim().toLowerCase();
+
+                const rows = tableBody.querySelectorAll("tr");
+                let visibleRows = 0;
+
+                rows.forEach((row) => {
+                    const url = row.dataset.url || "";
+                    const matches = url.includes(searchTerm);
+
+                    row.hidden = !matches;
+
+                    if (matches) {
+                        visibleRows += 1;
+                    }
+                });
+
+                resultCount.textContent =
+                    `Showing ${visibleRows} page` +
+                    `${visibleRows === 1 ? "" : "s"}`;
+            }
+
+            sortButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    sortTable(button);
+                });
+            });
+
+            searchInput.addEventListener(
+                "input",
+                filterRows
+            );
+        })();
+    </script>
 </body>
 </html>
