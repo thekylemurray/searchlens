@@ -15,4 +15,9 @@ CHECK_WEIGHTS = {
     "H1 Tags": 15,
     "Robots Meta Tag": 10,
     "Images": 10,
+    "Open Graph": 10,
+    "Twitter Cards": 5,
+    "Structured Data": 10,
+    "Site Files": 10,
+    "Sitemap": 10
 }

@@ -9,6 +9,33 @@ STATUS_SYMBOLS = {
     "info": "ℹ",
 }
 
+def print_value(value, indent: int = 2) -> None:
+    """Recursively print structured audit values."""
+
+    prefix = " " * indent
+
+    if isinstance(value, dict):
+        for key, item in value.items():
+            formatted_key = str(key).replace("_", " ").title()
+
+            if isinstance(item, (dict, list)):
+                print(f"{prefix}{formatted_key}:")
+                print_value(item, indent + 2)
+            else:
+                print(f"{prefix}• {formatted_key}: {item}")
+
+    elif isinstance(value, list):
+        for item in value:
+            if isinstance(item, dict):
+                print(f"{prefix}• Sitemap:")
+                print_value(item, indent + 2)
+            elif isinstance(item, list):
+                print_value(item, indent + 2)
+            else:
+                print(f"{prefix}• {item}")
+
+    else:
+        print(f"{prefix}{value}")
 
 def print_result(result: AuditResult) -> None:
     """Print one audit result in a consistent format."""
@@ -21,31 +48,9 @@ def print_result(result: AuditResult) -> None:
     print(f"  {result.message}")
 
     if result.value not in (None, ""):
-        if isinstance(result.value, list):
-            print("  Values:")
-
-            for item in result.value:
-                print(f"    • {item}")
-
-        elif isinstance(result.value, dict):
+        if isinstance(result.value, (dict, list)):
             print("  Details:")
-
-            for key, value in result.value.items():
-                if isinstance(value, dict):
-                    print(f"    {key.title()}:")
-
-                    for nested_key, nested_value in value.items():
-                        print(f"      • {nested_key}: {nested_value}")
-
-                elif isinstance(value, list):
-                    print(f"    {key.title()}:")
-
-                    for item in value:
-                        print(f"      • {item}")
-
-                else:
-                    print(f"    • {key}: {value}")
-
+            print_value(result.value, indent=4)
         else:
             print(f"  Value: {result.value}")
 
