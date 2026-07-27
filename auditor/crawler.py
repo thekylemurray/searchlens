@@ -4,6 +4,7 @@ from urllib.parse import urldefrag, urljoin, urlparse
 import requests
 
 from auditor.fetcher import fetch_page
+from auditor.models import CrawlDiscovery
 
 
 SKIPPED_SCHEMES = (
@@ -15,14 +16,18 @@ SKIPPED_SCHEMES = (
 
 
 def normalize_crawl_url(url: str) -> str:
-    """Remove URL fragments and normalize trailing fragments."""
+    """Remove URL fragments from a crawl URL."""
 
     clean_url, _ = urldefrag(url)
+
     return clean_url
 
 
-def is_internal_url(url: str, start_domain: str) -> bool:
-    """Return True when a URL belongs to the starting domain."""
+def is_internal_url(
+    url: str,
+    start_domain: str,
+) -> bool:
+    """Return whether a URL belongs to the starting domain."""
 
     parsed_url = urlparse(url)
 
@@ -35,15 +40,16 @@ def is_internal_url(url: str, start_domain: str) -> bool:
 def crawl_site(
     start_url: str,
     max_pages: int = 25,
-) -> list[str]:
-    """Discover internal pages using breadth-first crawling."""
+) -> CrawlDiscovery:
+    """Discover internal pages and link relationships using BFS."""
 
     normalized_start_url = normalize_crawl_url(start_url)
     start_domain = urlparse(normalized_start_url).netloc
 
     queue = deque([normalized_start_url])
     queued = {normalized_start_url}
-    visited = set()
+    visited: set[str] = set()
+    link_edges: set[tuple[str, str]] = set()
 
     while queue and len(visited) < max_pages:
         current_url = queue.popleft()
@@ -58,9 +64,14 @@ def crawl_site(
             print(f"Could not crawl {current_url}: {error}")
             continue
 
-        final_url = normalize_crawl_url(page["response"].url)
+        final_url = normalize_crawl_url(
+            page["response"].url
+        )
 
-        if not is_internal_url(final_url, start_domain):
+        if not is_internal_url(
+            final_url,
+            start_domain,
+        ):
             continue
 
         visited.add(final_url)
@@ -75,20 +86,56 @@ def crawl_site(
 
             href = href.strip()
 
-            if not href or href.startswith(SKIPPED_SCHEMES):
+            if (
+                not href
+                or href.lower().startswith(SKIPPED_SCHEMES)
+            ):
                 continue
 
-            absolute_url = urljoin(final_url, href)
-            normalized_url = normalize_crawl_url(absolute_url)
+            absolute_url = urljoin(
+                final_url,
+                href,
+            )
 
-            if not is_internal_url(normalized_url, start_domain):
+            normalized_url = normalize_crawl_url(
+                absolute_url
+            )
+
+            if not is_internal_url(
+                normalized_url,
+                start_domain,
+            ):
                 continue
+
+            link_edges.add(
+                (
+                    final_url,
+                    normalized_url,
+                )
+            )
 
             if (
                 normalized_url not in visited
                 and normalized_url not in queued
+                and len(visited) + len(queue) < max_pages
             ):
                 queue.append(normalized_url)
                 queued.add(normalized_url)
 
-    return sorted(visited)
+    discovered_pages = sorted(visited)
+
+    discovered_page_set = set(discovered_pages)
+
+    retained_edges = sorted(
+        edge
+        for edge in link_edges
+        if (
+            edge[0] in discovered_page_set
+            and edge[1] in discovered_page_set
+        )
+    )
+
+    return CrawlDiscovery(
+        pages=discovered_pages,
+        links=retained_edges,
+    )

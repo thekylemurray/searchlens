@@ -52,12 +52,21 @@ class FailedPage:
 
 
 @dataclass
+class CrawlDiscovery:
+    """Represent URLs and link relationships found by the crawler."""
+
+    pages: list[str] = field(default_factory=list)
+    links: list[tuple[str, str]] = field(default_factory=list)
+
+
+@dataclass
 class CrawlAudit:
     """Represent the complete result of a website crawl."""
 
     start_url: str
     pages: list[PageAudit] = field(default_factory=list)
     failed_pages: list[FailedPage] = field(default_factory=list)
+    link_edges: list[tuple[str, str]] = field(default_factory=list)
 
     @property
     def pages_audited(self) -> int:

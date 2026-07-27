@@ -9,6 +9,7 @@ from auditor.crawl_html_exporter import export_crawl_html_report
 from auditor.crawler import crawl_site
 from auditor.exporter import export_results
 from auditor.fetcher import fetch_page
+from auditor.graphviz_exporter import export_link_graph
 from auditor.html_reporter import export_html_report
 from auditor.models import CrawlAudit, FailedPage, PageAudit
 from auditor.reporter import print_report
@@ -18,7 +19,7 @@ from auditor.site_reporter import print_site_report
 
 
 APP_NAME = "SEO Auditor"
-VERSION = "0.6.0"
+VERSION = "0.7.0"
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -62,7 +63,7 @@ def parse_arguments() -> argparse.Namespace:
         dest="export_html",
         help=(
             "Export an HTML report. In crawl mode, exports "
-            "the site dashboard."
+            "the interactive site dashboard."
         ),
     )
 
@@ -71,6 +72,13 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         dest="export_csv",
         help="Export crawl issues as CSV.",
+    )
+
+    parser.add_argument(
+        "--graph",
+        action="store_true",
+        dest="export_graph",
+        help="Export the internal link graph as Graphviz DOT.",
     )
 
     parser.add_argument(
@@ -202,7 +210,13 @@ def export_crawl_reports(
 ) -> None:
     """Export requested crawl reports."""
 
-    if not args.export_csv and not args.export_html:
+    if not any(
+        [
+            args.export_csv,
+            args.export_html,
+            args.export_graph,
+        ]
+    ):
         return
 
     output_directory = get_output_directory(
@@ -229,6 +243,16 @@ def export_crawl_reports(
 
         print(f"HTML dashboard saved to: {html_path}")
 
+    if args.export_graph:
+        graph_path = export_link_graph(
+            crawl_audit=crawl_audit,
+            output_file=str(
+                output_directory / "site-graph.dot"
+            ),
+        )
+
+        print(f"Link graph saved to: {graph_path}")
+
 
 def run_crawl_audit(
     url: str,
@@ -241,26 +265,30 @@ def run_crawl_audit(
     print(f"Maximum pages: {max_pages}")
     print()
 
-    discovered_pages = crawl_site(
+    discovery = crawl_site(
         url,
         max_pages=max_pages,
     )
 
     print(
-        f"Discovered {len(discovered_pages)} internal page(s)."
+        f"Discovered {len(discovery.pages)} internal page(s)."
+    )
+    print(
+        f"Recorded {len(discovery.links)} internal link(s)."
     )
     print()
 
     crawl_audit = CrawlAudit(
         start_url=url,
+        link_edges=discovery.links,
     )
 
     for index, page_url in enumerate(
-        discovered_pages,
+        discovery.pages,
         start=1,
     ):
         print(
-            f"[{index}/{len(discovered_pages)}] "
+            f"[{index}/{len(discovery.pages)}] "
             f"Auditing {page_url}"
         )
 
@@ -301,6 +329,11 @@ def validate_arguments(
     if args.export_csv and not args.crawl:
         raise SystemExit(
             "--csv can only be used together with --crawl."
+        )
+
+    if args.export_graph and not args.crawl:
+        raise SystemExit(
+            "--graph can only be used together with --crawl."
         )
 
     if args.export_json and args.crawl:
