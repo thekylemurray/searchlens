@@ -23,16 +23,6 @@ https://thekey.com/services/alzheimers-dementia-care,200,83,Open Graph,warning,1
 https://thekey.com/services/alzheimers-dementia-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
 https://thekey.com/services/alzheimers-dementia-care,200,83,Links,warning,11 link(s) have empty anchor text.
 https://thekey.com/services/alzheimers-dementia-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/end-of-life-care,200,83,Title Tag,warning,Title is too long (63 characters; maximum is 60).
-https://thekey.com/services/end-of-life-care,200,83,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/end-of-life-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/end-of-life-care,200,83,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/end-of-life-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/geriatric-care-management,200,83,Title Tag,warning,Title is too long (63 characters; maximum is 60).
-https://thekey.com/services/geriatric-care-management,200,83,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/geriatric-care-management,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/geriatric-care-management,200,83,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/geriatric-care-management,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
 https://thekey.com/services/in-home-care,200,88,Open Graph,warning,1 required Open Graph tag is missing.
 https://thekey.com/services/in-home-care,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
 https://thekey.com/services/in-home-care,200,88,Links,warning,11 link(s) have empty anchor text.
@@ -55,61 +45,3 @@ https://thekey.com/services/respite-care,200,83,Open Graph,warning,1 required Op
 https://thekey.com/services/respite-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
 https://thekey.com/services/respite-care,200,83,Links,warning,11 link(s) have empty anchor text.
 https://thekey.com/services/respite-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/skilled-nursing,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/skilled-nursing,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/skilled-nursing,200,88,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/skilled-nursing,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/skilled-nursing/concierge-nursing,200,83,Title Tag,warning,Title is too long (66 characters; maximum is 60).
-https://thekey.com/services/skilled-nursing/concierge-nursing,200,83,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/skilled-nursing/concierge-nursing,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/skilled-nursing/concierge-nursing,200,83,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/skilled-nursing/concierge-nursing,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/skilled-nursing/private-duty-nursing,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/skilled-nursing/private-duty-nursing,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/skilled-nursing/private-duty-nursing,200,88,Links,warning,3 link(s) are missing an href.
-https://thekey.com/services/skilled-nursing/private-duty-nursing,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/who-we-care-for,200,87,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/who-we-care-for,200,87,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/who-we-care-for,200,87,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/who-we-care-for,200,87,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/who-we-care-for/caregivers-families,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/who-we-care-for/caregivers-families,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/who-we-care-for/caregivers-families,200,88,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/who-we-care-for/caregivers-families,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/who-we-care-for/seniors,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/who-we-care-for/seniors,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/who-we-care-for/seniors,200,88,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/who-we-care-for/seniors,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/who-we-care-for/veterans,200,84,Heading Structure,warning,1 heading level jump(s) were detected.
-https://thekey.com/who-we-care-for/veterans,200,84,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/who-we-care-for/veterans,200,84,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/who-we-care-for/veterans,200,84,Links,warning,1 link(s) are missing an href.
-https://thekey.com/who-we-care-for/veterans,200,84,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/why-families-choose-thekey/testimonials,200,81,Title Tag,warning,Title is too long (61 characters; maximum is 60).
-https://thekey.com/why-families-choose-thekey/testimonials,200,81,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/why-families-choose-thekey/testimonials,200,81,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/why-families-choose-thekey/testimonials,200,81,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/why-families-choose-thekey/testimonials,200,81,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/why-the-key,200,82,Heading Structure,warning,1 heading level jump(s) were detected.
-https://thekey.com/why-the-key,200,82,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/why-the-key,200,82,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/why-the-key,200,82,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/why-the-key,200,82,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/why-thekey/family-support,200,82,Heading Structure,warning,1 heading level jump(s) were detected.
-https://thekey.com/why-thekey/family-support,200,82,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/why-thekey/family-support,200,82,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/why-thekey/family-support,200,82,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/why-thekey/family-support,200,82,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/why-thekey/our-process,200,87,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/why-thekey/our-process,200,87,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/why-thekey/our-process,200,87,Links,warning,1 link(s) are missing an href.
-https://thekey.com/why-thekey/our-process,200,87,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/why-thekey/our-story,200,87,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/why-thekey/our-story,200,87,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/why-thekey/our-story,200,87,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/why-thekey/our-story,200,87,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/why-thekey/partnerships-accreditations,200,82,Heading Structure,warning,1 heading level jump(s) were detected.
-https://thekey.com/why-thekey/partnerships-accreditations,200,82,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/why-thekey/partnerships-accreditations,200,82,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/why-thekey/partnerships-accreditations,200,82,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/why-thekey/partnerships-accreditations,200,82,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.

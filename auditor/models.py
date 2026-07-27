@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from typing import Any
 
 
@@ -32,6 +32,10 @@ class AuditResult:
 
         return self.status == "info"
 
+    def to_dict(self) -> dict[str, Any]:
+        """Convert the audit result into a JSON-serializable dictionary."""
+
+        return asdict(self)
 
 @dataclass
 class PageAudit:

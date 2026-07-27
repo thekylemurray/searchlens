@@ -1,27 +1,27 @@
 {
   "url": "https://thekey.com/",
-  "score": 85,
+  "score": 78,
   "results": [
     {
       "name": "Title Tag",
       "status": "pass",
-      "message": "...",
+      "message": "Title length is good (58 characters).",
       "value": "Trusted Premium In-Home Care Services for Seniors | TheKey",
-      "weight": 20
+      "weight": 1
     },
     {
       "name": "Meta Description",
       "status": "pass",
       "message": "Description length is good (150 characters).",
       "value": "Professional in-home senior care that supports safety, independence, and peace of mind. Trusted caregivers and personalized home care tailored to you.",
-      "weight": 15
+      "weight": 1
     },
     {
       "name": "Canonical URL",
       "status": "pass",
       "message": "Canonical URL found.",
       "value": "https://thekey.com",
-      "weight": 15
+      "weight": 1
     },
     {
       "name": "H1 Tags",
@@ -31,21 +31,225 @@
         "Trusted Home Care, Built Around Your Life",
         "Connect With Your Local Care Team"
       ],
-      "weight": 15
+      "weight": 1
+    },
+    {
+      "name": "Heading Structure",
+      "status": "warning",
+      "message": "1 heading level jump(s) were detected.",
+      "value": {
+        "Counts": {
+          "H1": 2,
+          "H2": 9,
+          "H3": 33,
+          "H4": 1,
+          "H5": 1
+        },
+        "Heading Order": [
+          {
+            "Level": "H1",
+            "Text": "Trusted Home Care, Built Around Your Life"
+          },
+          {
+            "Level": "H2",
+            "Text": "TheKey to Care That Adapts as Your Needs Change"
+          },
+          {
+            "Level": "H2",
+            "Text": "Getting Started is Simpler Than You Think."
+          },
+          {
+            "Level": "H3",
+            "Text": "We Start by Listening"
+          },
+          {
+            "Level": "H3",
+            "Text": "We Design Care Around the Individual"
+          },
+          {
+            "Level": "H3",
+            "Text": "We Support You at Every Step"
+          },
+          {
+            "Level": "H2",
+            "Text": "We Offer a Full Spectrum of Personalized Care"
+          },
+          {
+            "Level": "H3",
+            "Text": "Daily Living and Companionship"
+          },
+          {
+            "Level": "H3",
+            "Text": "Alzheimer's and Dementia Care"
+          },
+          {
+            "Level": "H3",
+            "Text": "Skilled Nursing Services"
+          },
+          {
+            "Level": "H3",
+            "Text": "Expert Care Management and Advocacy"
+          },
+          {
+            "Level": "H3",
+            "Text": "End-of-Life Support"
+          },
+          {
+            "Level": "H3",
+            "Text": "Respite Care"
+          },
+          {
+            "Level": "H2",
+            "Text": "More Than Care—It’s Independence and Quality of Life."
+          },
+          {
+            "Level": "H2",
+            "Text": "Understanding Your Care Options"
+          },
+          {
+            "Level": "H3",
+            "Text": "Short-Term Support (2–3 months)"
+          },
+          {
+            "Level": "H3",
+            "Text": "Long-Term Support"
+          },
+          {
+            "Level": "H3",
+            "Text": "Flexible or Adaptive Support"
+          },
+          {
+            "Level": "H2",
+            "Text": "TheKey Difference: Expertise, Accountability, and Compassion."
+          },
+          {
+            "Level": "H3",
+            "Text": "We Focus on the Whole Person."
+          },
+          {
+            "Level": "H3",
+            "Text": "Always On, Always Accountable."
+          },
+          {
+            "Level": "H3",
+            "Text": "Local Presence, National Strength."
+          },
+          {
+            "Level": "H3",
+            "Text": "You Get a Complete Team, Not Just a Caregiver."
+          },
+          {
+            "Level": "H3",
+            "Text": "Rooted in Science, Guided by Heart."
+          },
+          {
+            "Level": "H2",
+            "Text": "Hear From Clients and Their Loved Ones"
+          },
+          {
+            "Level": "H3",
+            "Text": "Kimberly C."
+          },
+          {
+            "Level": "H3",
+            "Text": "Krystin K."
+          },
+          {
+            "Level": "H3",
+            "Text": "Nicole B."
+          },
+          {
+            "Level": "H3",
+            "Text": "Elizabeth J."
+          },
+          {
+            "Level": "H3",
+            "Text": "Jessica C."
+          },
+          {
+            "Level": "H3",
+            "Text": "Tiffany J."
+          },
+          {
+            "Level": "H3",
+            "Text": "Lauren T."
+          },
+          {
+            "Level": "H3",
+            "Text": "Bryant L."
+          },
+          {
+            "Level": "H1",
+            "Text": "Connect With Your Local Care Team"
+          },
+          {
+            "Level": "H4",
+            "Text": "Find ZIP Code"
+          },
+          {
+            "Level": "H5",
+            "Text": "Results"
+          },
+          {
+            "Level": "H2",
+            "Text": "Frequently Asked Questions"
+          },
+          {
+            "Level": "H3",
+            "Text": "How do I know if it’s the right time for personalized home care?"
+          },
+          {
+            "Level": "H3",
+            "Text": "What's the difference between home care and home health?"
+          },
+          {
+            "Level": "H3",
+            "Text": "How much does care cost?"
+          },
+          {
+            "Level": "H3",
+            "Text": "How do you match caregivers to clients?"
+          },
+          {
+            "Level": "H3",
+            "Text": "What if our needs change over time?"
+          },
+          {
+            "Level": "H3",
+            "Text": "Can we get care if we live in a senior living community?"
+          },
+          {
+            "Level": "H3",
+            "Text": "How quickly can care start?"
+          },
+          {
+            "Level": "H3",
+            "Text": "What happens in an emergency or if our regular caregiver is unavailable?"
+          },
+          {
+            "Level": "H2",
+            "Text": "Discover How Our Private Home Care Can Help You"
+          }
+        ],
+        "Skipped Levels": [
+          "H1 → H4"
+        ]
+      },
+      "weight": 1
     },
     {
       "name": "Robots Meta Tag",
       "status": "info",
       "message": "No robots meta tag found. Search engines will generally use their default indexing behavior.",
       "value": null,
-      "weight": 10
+      "weight": 1
     },
     {
       "name": "Images",
       "status": "pass",
       "message": "All 28 images contain alt text.",
       "value": null,
-      "weight": 10
+      "weight": 1
     },
     {
       "name": "Open Graph",
@@ -61,7 +265,7 @@
           "og:image"
         ]
       },
-      "weight": 10
+      "weight": 1
     },
     {
       "name": "Twitter Cards",
@@ -77,7 +281,7 @@
           "twitter:image"
         ]
       },
-      "weight": 5
+      "weight": 1
     },
     {
       "name": "Structured Data",
@@ -92,7 +296,91 @@
         "valid blocks": 1,
         "invalid blocks": 0
       },
-      "weight": 10
+      "weight": 1
+    },
+    {
+      "name": "Performance",
+      "status": "pass",
+      "message": "Collected page performance metrics.",
+      "value": {
+        "Response Time (ms)": 313,
+        "Page Size (KB)": 236.8,
+        "Compression": "gzip",
+        "Redirects": 0,
+        "Status Code": 200
+      },
+      "weight": 1
+    },
+    {
+      "name": "Links",
+      "status": "warning",
+      "message": "11 link(s) have empty anchor text.",
+      "value": {
+        "Total Links": 85,
+        "Internal": 73,
+        "External": 12,
+        "Unique Internal": 40,
+        "Unique External": 7,
+        "nofollow": 0,
+        "Missing href": 0,
+        "Empty Anchor Text": 11
+      },
+      "weight": 1
+    },
+    {
+      "name": "HTTP Headers",
+      "status": "warning",
+      "message": "2 recommended HTTP security header(s) are missing.",
+      "value": {
+        "Response Headers": {
+          "Content Type": "text/html; charset=UTF-8",
+          "Content Encoding": "gzip",
+          "Cache Control": "s-maxage=36000, max-age=5",
+          "Expires": null
+        },
+        "Security Headers": {
+          "Found": {
+            "Strict-Transport-Security": "max-age=31536000",
+            "Referrer-Policy": "no-referrer-when-downgrade",
+            "Content-Security-Policy": "upgrade-insecure-requests"
+          },
+          "Missing": [
+            "X-Frame-Options",
+            "X-Content-Type-Options"
+          ]
+        }
+      },
+      "weight": 1
+    },
+    {
+      "name": "Site Files",
+      "status": "pass",
+      "message": "robots.txt was found and declares a sitemap.",
+      "value": {
+        "robots URL": "https://thekey.com/robots.txt",
+        "sitemaps": [
+          "https://thekey.com/sitemap.xml"
+        ]
+      },
+      "weight": 1
+    },
+    {
+      "name": "Sitemap",
+      "status": "pass",
+      "message": "1 valid sitemap file was found with 615 total entries.",
+      "value": {
+        "sitemaps": [
+          {
+            "url": "https://thekey.com/sitemap.xml",
+            "status code": 200,
+            "type": "urlset",
+            "entries": 615,
+            "valid": true,
+            "error": null
+          }
+        ]
+      },
+      "weight": 1
     }
   ]
 }
