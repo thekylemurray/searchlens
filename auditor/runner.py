@@ -1,3 +1,5 @@
+from auditor.checks.headings import check_heading_structure
+from auditor.checks.http_headers import check_http_headers
 from auditor.checks.links import check_links
 from auditor.checks.performance import check_performance
 from auditor.context import PageContext
@@ -19,6 +21,7 @@ SOUP_CHECKS = [
     check_meta_description,
     check_canonical,
     check_h1,
+    check_heading_structure,
     check_robots,
     check_images,
     check_open_graph,
@@ -29,6 +32,7 @@ SOUP_CHECKS = [
 CONTEXT_CHECKS = [
     check_performance,
     check_links,
+    check_http_headers,
 ]
 
 

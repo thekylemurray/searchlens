@@ -19,5 +19,7 @@ CHECK_WEIGHTS = {
     "Twitter Cards": 5,
     "Structured Data": 10,
     "Site Files": 10,
-    "Sitemap": 10
+    "Sitemap": 10,
+    "HTTP Headers": 10,
+    "Heading Structure": 10
 }
