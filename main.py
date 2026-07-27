@@ -5,6 +5,7 @@ import requests
 
 from auditor.context import PageContext
 from auditor.crawl_csv_exporter import export_crawl_csv
+from auditor.crawl_html_exporter import export_crawl_html_report
 from auditor.crawler import crawl_site
 from auditor.exporter import export_results
 from auditor.fetcher import fetch_page
@@ -17,7 +18,7 @@ from auditor.site_reporter import print_site_report
 
 
 APP_NAME = "SEO Auditor"
-VERSION = "0.5.0"
+VERSION = "0.6.0"
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -59,7 +60,10 @@ def parse_arguments() -> argparse.Namespace:
         "--html",
         action="store_true",
         dest="export_html",
-        help="Export a single-page HTML audit report.",
+        help=(
+            "Export an HTML report. In crawl mode, exports "
+            "the site dashboard."
+        ),
     )
 
     parser.add_argument(
@@ -108,6 +112,21 @@ def create_context(url: str) -> PageContext:
     )
 
 
+def get_output_directory(
+    output_dir: str,
+) -> Path:
+    """Create and return the report output directory."""
+
+    output_directory = Path(output_dir)
+
+    output_directory.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    return output_directory
+
+
 def run_single_page_audit(
     url: str,
     args: argparse.Namespace,
@@ -131,11 +150,8 @@ def run_single_page_audit(
     if not args.export_json and not args.export_html:
         return
 
-    output_directory = Path(args.output_dir)
-
-    output_directory.mkdir(
-        parents=True,
-        exist_ok=True,
+    output_directory = get_output_directory(
+        args.output_dir
     )
 
     if args.export_json:
@@ -178,6 +194,40 @@ def audit_crawled_page(
         score=score,
         results=results,
     )
+
+
+def export_crawl_reports(
+    crawl_audit: CrawlAudit,
+    args: argparse.Namespace,
+) -> None:
+    """Export requested crawl reports."""
+
+    if not args.export_csv and not args.export_html:
+        return
+
+    output_directory = get_output_directory(
+        args.output_dir
+    )
+
+    if args.export_csv:
+        csv_path = export_crawl_csv(
+            crawl_audit=crawl_audit,
+            output_file=str(
+                output_directory / "site-audit.csv"
+            ),
+        )
+
+        print(f"CSV report saved to: {csv_path}")
+
+    if args.export_html:
+        html_path = export_crawl_html_report(
+            crawl_audit=crawl_audit,
+            output_file=str(
+                output_directory / "site-audit.html"
+            ),
+        )
+
+        print(f"HTML dashboard saved to: {html_path}")
 
 
 def run_crawl_audit(
@@ -233,23 +283,7 @@ def run_crawl_audit(
         print(f"  Score: {page_audit.score}/100")
 
     print_site_report(crawl_audit)
-
-    if args.export_csv:
-        output_directory = Path(args.output_dir)
-
-        output_directory.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
-
-        csv_path = export_crawl_csv(
-            crawl_audit=crawl_audit,
-            output_file=str(
-                output_directory / "site-audit.csv"
-            ),
-        )
-
-        print(f"CSV report saved to: {csv_path}")
+    export_crawl_reports(crawl_audit, args)
 
     return crawl_audit
 
@@ -267,6 +301,11 @@ def validate_arguments(
     if args.export_csv and not args.crawl:
         raise SystemExit(
             "--csv can only be used together with --crawl."
+        )
+
+    if args.export_json and args.crawl:
+        raise SystemExit(
+            "Crawl-mode JSON export is not supported yet."
         )
 
 
