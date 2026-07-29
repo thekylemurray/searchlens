@@ -1,47 +1,189 @@
 ﻿URL,Status Code,Score,Check,Result Status,Message
-https://thekey.com/,200,78,H1 Tags,warning,2 H1 tags found. Pages should generally have one H1.
-https://thekey.com/,200,78,Heading Structure,warning,1 heading level jump(s) were detected.
-https://thekey.com/,200,78,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/,200,78,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/,200,78,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/,200,78,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/careers,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/careers,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/careers,200,88,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/careers,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/locations,200,82,Heading Structure,warning,1 heading level jump(s) were detected.
-https://thekey.com/locations,200,82,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/locations,200,82,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/locations,200,82,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/locations,200,82,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services,200,88,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/alzheimers-dementia-care,200,83,Title Tag,warning,Title is too long (63 characters; maximum is 60).
-https://thekey.com/services/alzheimers-dementia-care,200,83,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/alzheimers-dementia-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/alzheimers-dementia-care,200,83,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/alzheimers-dementia-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/in-home-care,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/in-home-care,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/in-home-care,200,88,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/in-home-care,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/in-home-care/24-7-care,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/in-home-care/24-7-care,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/in-home-care/24-7-care,200,88,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/in-home-care/24-7-care,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/in-home-care/hourly-care-adl-support,200,88,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/in-home-care/hourly-care-adl-support,200,88,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/in-home-care/hourly-care-adl-support,200,88,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/in-home-care/hourly-care-adl-support,200,88,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/in-home-care/live-in-care,200,83,Title Tag,warning,Title is too long (61 characters; maximum is 60).
-https://thekey.com/services/in-home-care/live-in-care,200,83,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/in-home-care/live-in-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/in-home-care/live-in-care,200,83,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/in-home-care/live-in-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
-https://thekey.com/services/respite-care,200,83,Title Tag,warning,Title is too long (66 characters; maximum is 60).
-https://thekey.com/services/respite-care,200,83,Open Graph,warning,1 required Open Graph tag is missing.
-https://thekey.com/services/respite-care,200,83,Twitter Cards,warning,1 recommended Twitter Card tag is missing.
-https://thekey.com/services/respite-care,200,83,Links,warning,11 link(s) have empty anchor text.
-https://thekey.com/services/respite-care,200,83,HTTP Headers,warning,2 recommended HTTP security header(s) are missing.
+https://www.python.org/,200,71,Title Tag,warning,Title is too short (21 characters; minimum is 30).
+https://www.python.org/,200,71,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/,200,71,Canonical URL,fail,No canonical URL found.
+https://www.python.org/,200,71,H1 Tags,warning,5 H1 tags found. Pages should generally have one H1.
+https://www.python.org/,200,71,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/,200,71,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/,200,71,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/,200,71,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/about/,200,76,Title Tag,warning,Title is too short (26 characters; minimum is 30).
+https://www.python.org/about/,200,76,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/about/,200,76,Canonical URL,fail,No canonical URL found.
+https://www.python.org/about/,200,76,Links,warning,2 link(s) have empty anchor text.
+https://www.python.org/about/,200,76,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/about/,200,76,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/about/,200,76,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/about/apps/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/about/apps/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/about/apps/,200,72,H1 Tags,warning,7 H1 tags found. Pages should generally have one H1.
+https://www.python.org/about/apps/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/about/apps/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/about/apps/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/about/apps/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/about/apps/,200,72,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/about/gettingstarted/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/about/gettingstarted/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/about/gettingstarted/,200,72,H1 Tags,warning,6 H1 tags found. Pages should generally have one H1.
+https://www.python.org/about/gettingstarted/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/about/gettingstarted/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/about/gettingstarted/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/about/gettingstarted/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/about/gettingstarted/,200,72,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/about/help/,200,66,Title Tag,warning,Title is too short (17 characters; minimum is 30).
+https://www.python.org/about/help/,200,66,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/about/help/,200,66,Canonical URL,fail,No canonical URL found.
+https://www.python.org/about/help/,200,66,H1 Tags,warning,10 H1 tags found. Pages should generally have one H1.
+https://www.python.org/about/help/,200,66,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/about/help/,200,66,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/about/help/,200,66,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/about/help/,200,66,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/about/help/,200,66,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/about/quotes/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/about/quotes/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/about/quotes/,200,72,H1 Tags,warning,13 H1 tags found. Pages should generally have one H1.
+https://www.python.org/about/quotes/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/about/quotes/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/about/quotes/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/about/quotes/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/about/quotes/,200,72,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/community/,200,72,Title Tag,warning,Title is too short (26 characters; minimum is 30).
+https://www.python.org/community/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/community/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/community/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/community/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/community/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/community/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/community/,200,72,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/community/diversity/,200,66,Title Tag,warning,Title is too short (22 characters; minimum is 30).
+https://www.python.org/community/diversity/,200,66,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/community/diversity/,200,66,Canonical URL,fail,No canonical URL found.
+https://www.python.org/community/diversity/,200,66,H1 Tags,warning,3 H1 tags found. Pages should generally have one H1.
+https://www.python.org/community/diversity/,200,66,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/community/diversity/,200,66,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/community/diversity/,200,66,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/community/diversity/,200,66,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/community/diversity/,200,66,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/community/forums/,200,72,Title Tag,warning,Title is too short (19 characters; minimum is 30).
+https://www.python.org/community/forums/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/community/forums/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/community/forums/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/community/forums/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/community/forums/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/community/forums/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/community/forums/,200,72,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/community/irc/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/community/irc/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/community/irc/,200,72,H1 Tags,warning,3 H1 tags found. Pages should generally have one H1.
+https://www.python.org/community/irc/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/community/irc/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/community/irc/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/community/irc/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/community/irc/,200,72,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/community/lists/,200,66,Title Tag,warning,Title is too short (26 characters; minimum is 30).
+https://www.python.org/community/lists/,200,66,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/community/lists/,200,66,Canonical URL,fail,No canonical URL found.
+https://www.python.org/community/lists/,200,66,H1 Tags,warning,11 H1 tags found. Pages should generally have one H1.
+https://www.python.org/community/lists/,200,66,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/community/lists/,200,66,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/community/lists/,200,66,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/community/lists/,200,66,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/community/lists/,200,66,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/doc/,200,82,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/doc/,200,82,Canonical URL,fail,No canonical URL found.
+https://www.python.org/doc/,200,82,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/doc/,200,82,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/doc/,200,82,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/doc/,200,82,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/doc/av/,200,78,Canonical URL,fail,No canonical URL found.
+https://www.python.org/doc/av/,200,78,H1 Tags,warning,4 H1 tags found. Pages should generally have one H1.
+https://www.python.org/doc/av/,200,78,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/doc/av/,200,78,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/doc/av/,200,78,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/doc/av/,200,78,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/doc/av/,200,78,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/doc/essays/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/doc/essays/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/doc/essays/,200,72,H1 Tags,warning,3 H1 tags found. Pages should generally have one H1.
+https://www.python.org/doc/essays/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/doc/essays/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/doc/essays/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/doc/essays/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/doc/essays/,200,72,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/download/alternatives/,200,78,Meta Description,warning,Description is too long (259 characters; maximum is 160).
+https://www.python.org/download/alternatives/,200,78,Canonical URL,fail,No canonical URL found.
+https://www.python.org/download/alternatives/,200,78,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/download/alternatives/,200,78,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/download/alternatives/,200,78,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/download/alternatives/,200,78,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/download/alternatives/,200,78,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/download/other/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/download/other/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/download/other/,200,72,H1 Tags,warning,10 H1 tags found. Pages should generally have one H1.
+https://www.python.org/download/other/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/download/other/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/download/other/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/download/other/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/download/other/,200,72,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/downloads/,200,66,Title Tag,warning,Title is too short (28 characters; minimum is 30).
+https://www.python.org/downloads/,200,66,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/downloads/,200,66,Canonical URL,fail,No canonical URL found.
+https://www.python.org/downloads/,200,66,H1 Tags,warning,6 H1 tags found. Pages should generally have one H1.
+https://www.python.org/downloads/,200,66,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/downloads/,200,66,Links,warning,2 link(s) are missing an href.
+https://www.python.org/downloads/,200,66,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/downloads/,200,66,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/downloads/,200,66,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/downloads/android/,200,82,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/downloads/android/,200,82,Canonical URL,fail,No canonical URL found.
+https://www.python.org/downloads/android/,200,82,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/downloads/android/,200,82,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/downloads/android/,200,82,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/downloads/android/,200,82,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/downloads/ios/,200,82,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/downloads/ios/,200,82,Canonical URL,fail,No canonical URL found.
+https://www.python.org/downloads/ios/,200,82,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/downloads/ios/,200,82,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/downloads/ios/,200,82,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/downloads/ios/,200,82,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/downloads/macos/,200,82,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/downloads/macos/,200,82,Canonical URL,fail,No canonical URL found.
+https://www.python.org/downloads/macos/,200,82,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/downloads/macos/,200,82,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/downloads/macos/,200,82,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/downloads/macos/,200,82,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/downloads/source/,200,82,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/downloads/source/,200,82,Canonical URL,fail,No canonical URL found.
+https://www.python.org/downloads/source/,200,82,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/downloads/source/,200,82,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/downloads/source/,200,82,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/downloads/source/,200,82,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/downloads/windows/,200,82,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/downloads/windows/,200,82,Canonical URL,fail,No canonical URL found.
+https://www.python.org/downloads/windows/,200,82,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/downloads/windows/,200,82,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/downloads/windows/,200,82,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/downloads/windows/,200,82,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/jobs/,200,76,Title Tag,warning,Title is too short (29 characters; minimum is 30).
+https://www.python.org/jobs/,200,76,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/jobs/,200,76,Canonical URL,fail,No canonical URL found.
+https://www.python.org/jobs/,200,76,Links,warning,1 link(s) are missing an href.
+https://www.python.org/jobs/,200,76,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/jobs/,200,76,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/jobs/,200,76,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/psf-landing/,200,71,Title Tag,warning,Title is too short (26 characters; minimum is 30).
+https://www.python.org/psf-landing/,200,71,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/psf-landing/,200,71,Canonical URL,fail,No canonical URL found.
+https://www.python.org/psf-landing/,200,71,H1 Tags,warning,5 H1 tags found. Pages should generally have one H1.
+https://www.python.org/psf-landing/,200,71,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/psf-landing/,200,71,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/psf-landing/,200,71,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/psf-landing/,200,71,Sitemap,warning,No valid sitemap could be found.
+https://www.python.org/psf/annual-report/2024/,200,72,Meta Description,warning,Description is too short (52 characters; minimum is 70).
+https://www.python.org/psf/annual-report/2024/,200,72,Canonical URL,fail,No canonical URL found.
+https://www.python.org/psf/annual-report/2024/,200,72,H1 Tags,warning,2 H1 tags found. Pages should generally have one H1.
+https://www.python.org/psf/annual-report/2024/,200,72,Heading Structure,warning,1 heading level jump(s) were detected.
+https://www.python.org/psf/annual-report/2024/,200,72,Links,warning,1 link(s) have empty anchor text.
+https://www.python.org/psf/annual-report/2024/,200,72,HTTP Headers,warning,3 recommended HTTP security header(s) are missing.
+https://www.python.org/psf/annual-report/2024/,200,72,Site Files,warning,"robots.txt was found, but no sitemap declaration was detected."
+https://www.python.org/psf/annual-report/2024/,200,72,Sitemap,warning,No valid sitemap could be found.

@@ -6,6 +6,9 @@ from bs4 import BeautifulSoup
 from auditor import crawler
 
 
+ROOT_URL = "https://example.com/"
+
+
 @dataclass
 class FakeResponse:
     """Minimal response object needed by the crawler."""
@@ -60,8 +63,8 @@ def test_crawl_site_discovers_internal_pages(
     monkeypatch,
 ) -> None:
     pages = {
-        "https://example.com": build_fake_page(
-            "https://example.com",
+        ROOT_URL: build_fake_page(
+            ROOT_URL,
             """
             <html>
                 <body>
@@ -106,18 +109,18 @@ def test_crawl_site_discovers_internal_pages(
     )
 
     discovery = crawler.crawl_site(
-        "https://example.com",
+        ROOT_URL,
         max_pages=10,
     )
 
     assert discovery.pages == [
-        "https://example.com",
+        ROOT_URL,
         "https://example.com/about",
         "https://example.com/contact",
     ]
 
     assert (
-        "https://example.com",
+        ROOT_URL,
         "https://example.com/about",
     ) in discovery.links
 
@@ -136,8 +139,8 @@ def test_crawl_site_respects_max_pages(
     monkeypatch,
 ) -> None:
     pages = {
-        "https://example.com": build_fake_page(
-            "https://example.com",
+        ROOT_URL: build_fake_page(
+            ROOT_URL,
             """
             <a href="/one">One</a>
             <a href="/two">Two</a>
@@ -165,7 +168,7 @@ def test_crawl_site_respects_max_pages(
     )
 
     discovery = crawler.crawl_site(
-        "https://example.com",
+        ROOT_URL,
         max_pages=2,
     )
 
@@ -176,8 +179,8 @@ def test_crawl_site_ignores_duplicate_and_fragment_links(
     monkeypatch,
 ) -> None:
     pages = {
-        "https://example.com": build_fake_page(
-            "https://example.com",
+        ROOT_URL: build_fake_page(
+            ROOT_URL,
             """
             <a href="/about">About</a>
             <a href="/about#team">Team</a>
@@ -197,7 +200,7 @@ def test_crawl_site_ignores_duplicate_and_fragment_links(
     )
 
     discovery = crawler.crawl_site(
-        "https://example.com",
+        ROOT_URL,
         max_pages=10,
     )
 
@@ -207,7 +210,7 @@ def test_crawl_site_ignores_duplicate_and_fragment_links(
 
     assert discovery.links.count(
         (
-            "https://example.com",
+            ROOT_URL,
             "https://example.com/about",
         )
     ) == 1
@@ -217,8 +220,8 @@ def test_crawl_site_continues_after_request_failure(
     monkeypatch,
 ) -> None:
     pages = {
-        "https://example.com": build_fake_page(
-            "https://example.com",
+        ROOT_URL: build_fake_page(
+            ROOT_URL,
             """
             <a href="/broken">Broken</a>
             <a href="/working">Working</a>
@@ -245,15 +248,17 @@ def test_crawl_site_continues_after_request_failure(
     )
 
     discovery = crawler.crawl_site(
-        "https://example.com",
+        ROOT_URL,
         max_pages=10,
     )
 
-    assert "https://example.com" in discovery.pages
+    assert ROOT_URL in discovery.pages
+
     assert (
         "https://example.com/working"
         in discovery.pages
     )
+
     assert (
         "https://example.com/broken"
         not in discovery.pages

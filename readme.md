@@ -73,45 +73,16 @@ SearchLens checks an individual page for:
 SearchLens can generate:
 
 - Console reports
-- JSON reports
-- CSV crawl exports
-- Interactive HTML dashboards
-- Graphviz DOT site graphs
+- JSON exports
+- CSV exports
+- Interactive HTML dashboard
+- Graphviz DOT site graph
 
-## Installation
+---
 
-Clone the repository and enter the project directory:
+## Example
 
-```bash
-git clone https://github.com/thekylemurray/seo-auditor.git
-cd searchlens
-```
-
-Create and activate a virtual environment.
-
-### Windows PowerShell
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-### macOS or Linux
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-## Usage
-
-### Single-page audit
+Single page audit
 
 ```bash
 python main.py https://example.com
@@ -322,4 +293,13 @@ Potential future enhancements include:
 
 ## License
 
-This project is available under the MIT License.
+MIT License
+
+
+## Why I Built This
+
+I built this project to deepen my understanding of Python application architecture while exploring technical SEO auditing.
+
+Rather than focusing only on extracting SEO information, I wanted to practice designing a maintainable application with clear separation of concerns, concurrent execution, automated testing, multiple export formats, and an interactive reporting interface.
+
+The project evolved from a simple single-page auditor into a multi-page crawler with weighted scoring, interactive HTML reporting, and internal link visualization.
