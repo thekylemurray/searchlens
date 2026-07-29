@@ -84,7 +84,7 @@ Clone the repository and enter the project directory:
 
 ```bash
 git clone https://github.com/thekylemurray/seo-auditor.git
-cd seo-auditor
+cd searchlens
 ```
 
 Create and activate a virtual environment.
