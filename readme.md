@@ -20,9 +20,8 @@ The interactive HTML dashboard includes:
 - Searchable and sortable page table
 - Failed-page summary
 
-Additional screenshots can be added after they are captured:
-
 ![Page results](images/page-table.png)
+
 ![SEO issues](images/issues.png)
 
 
