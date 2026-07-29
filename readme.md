@@ -83,8 +83,8 @@ SearchLens can generate:
 Clone the repository and enter the project directory:
 
 ```bash
-git clone <your-repository-url>
-cd searchlens-clean
+git clone https://github.com/thekylemurray/seo-auditor.git
+cd seo-auditor
 ```
 
 Create and activate a virtual environment.
