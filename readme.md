@@ -22,10 +22,9 @@ The interactive HTML dashboard includes:
 
 Additional screenshots can be added after they are captured:
 
-```markdown
 ![Page results](images/page-table.png)
 ![SEO issues](images/issues.png)
-```
+
 
 ## Features
 
